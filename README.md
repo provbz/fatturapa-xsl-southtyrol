@@ -7,7 +7,9 @@ This repository contains a new XSL Stylesheet for the Italian e-invoice (http://
 - YOUR-NAME
 
 ## Copying
-This XSL-stylesheet ```fatturapa_v1.1_de-it.xsl``` is free software: you can redistribute it and/or modify
+```fatturapa_v1.1_de-it.xsl``` - Copyright (C) 2015 Ferdinand Tavernini
+
+The XSL-stylesheet ```fatturapa_v1.1_de-it.xsl``` is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or any later version.
 
