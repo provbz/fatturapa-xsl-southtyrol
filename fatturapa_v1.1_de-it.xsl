@@ -88,7 +88,7 @@
                h4 { font-size:  9pt; }
                h5 { font-size:  8pt; }
                                    }
-@page print { size: A4 portrait; }
+@page { size: A4 portrait; }
 
 @media screen {  body { font-size: 10px }}
 body { max-width: 643px; min-width: 640px; }
