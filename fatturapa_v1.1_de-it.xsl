@@ -1,13 +1,31 @@
 <?xml version="1.0"?>
-<!-- copyleft: Ferdinand TAVERNINI WOBI-IPES Bozen/Bolzano -->
 <!-- Versionsdatum: 2015-07-04 -->
 <!-- Feedback erwünscht an info@ing-tavernini.com -->
+<!--
+fatturapa_v1.1_de-it.xsl
+Copyright (C) 2015 Ferdinand Tavernini WOBI-IPES Bozen/Bolzano
+
+The XSL-stylesheet fatturapa_v1.1_de-it.xsl is free software:
+you can redistribute it and/or modify it under the terms of the
+GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or any later version.
+
+fatturapa_v1.1_de-it.xsl is distributed in the hope that it will
+be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program (see LICENSE file). If not, see
+http://www.gnu.org/licenses/.
+-->
+
 <xsl:stylesheet 
      version="1.0" 
      xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
      xmlns:a="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1">
      <xsl:output method="html" />
-     <xsl:variable name="VersionFT" select="'Tabellenversion - Versione tabellare: 8.3 © 2015 Ferdinand TAVERNINI  GPLv3'" />
+     <xsl:variable name="VersionFT" select="'Stylesheet fatturapa_v1.1_de-it.xsl v8.3 - http://tinyurl.com/fatturapa-xsl-southtyrol © 2015 Ferdinand TAVERNINI GPLv3'" />
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="." />
 
      <xsl:template name="CodiceUnivocoUfficio">
@@ -135,7 +153,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                          <xsl:if test="a:FatturaElettronica">
                               <div id="fattura-elettronica"><h1>Italienische elektronische Rechnung<br /><i>FATTURA ELETTRONICA</i></h1><xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader">
                                         <div class="page">
-                                             <div class="version">Version <xsl:value-of select="a:FatturaElettronica/@versione"/></div>
+                                             <div class="version">FatturaPA Version/<i>versione</i> <xsl:value-of select="a:FatturaElettronica/@versione"/></div>
                                              <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/DatiTrasmissione">
                                                   <!--INIZIO DATI DELLA TRASMISSIONE-->
                                                   <div id="dati-trasmissione"><h3>Daten zur Übertragung - <i>Dati relativi alla trasmissione</i></h3><table id="t1">
