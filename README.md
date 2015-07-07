@@ -19,4 +19,4 @@ along with this program (see [LICENSE](https://github.com/paolodongilli/fatturap
 ## Contributors
 - Ferdinand Tavernini
 - Paolo Dongilli
-- YOUR-NAME
+- ... you can contribute and add YOUR-NAME
