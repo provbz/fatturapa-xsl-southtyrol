@@ -25,7 +25,7 @@ http://www.gnu.org/licenses/.
      xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
      xmlns:a="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1">
      <xsl:output method="html" />
-     <xsl:variable name="VersionFT" select="'Stylesheet fatturapa_v1.1_de-it.xsl v8.3 - http://tinyurl.com/fatturapa-xsl-southtyrol © 2015 Ferdinand TAVERNINI GPLv3'" />
+     <xsl:variable name="VersionFT" select="'Stylesheet fatturapa_v1.1_de-it.xsl v8.4 - http://tinyurl.com/fatturapa-xsl-southtyrol © 2015 Ferdinand TAVERNINI GPLv3'" />
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="." />
 
      <xsl:template name="CodiceUnivocoUfficio">
@@ -1543,6 +1543,16 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                         </xsl:if>
                                                                         <span><xsl:value-of select="Descrizione" /></span>
                                                                       </xsl:if>
+
+                                                                      <xsl:if test="TipoCessionePrestazione"><br /><span><xsl:value-of select="TipoCessionePrestazione" /></span>
+                                                                        <xsl:variable name="TCP"><xsl:value-of select="TipoCessionePrestazione" /></xsl:variable>
+                                                                         <xsl:choose>
+                                                                              <xsl:when test="$TCP='SC'"> (Skonto)<i>(sconto)</i></xsl:when>
+                                                                              <xsl:when test="$TCP='PR'"> (Prämie)<i>(premio)</i></xsl:when>
+                                                                              <xsl:when test="$TCP='AB'"> (Gutschrift)<i>(abbuono)</i></xsl:when>
+                                                                              <xsl:when test="$TCP='AC'"> (Zusatzspesen)<i>(spesa accessoria)</i></xsl:when>
+                                                                              <xsl:otherwise><fehler> (!!! falscher Kodex !!!)<i>(!!! codice non previsto !!!)</i></fehler></xsl:otherwise>
+                                                                         </xsl:choose><span><xsl:value-of select="ScontoMaggiorazione/Percentuale" />%</span></xsl:if>
                                                                       <xsl:if test="DataInizioPeriodo"><br />
                                                                         <xsl:if test="DataInizioPeriodo">Datum Beginn des Leistungszeitraumes <i>inizio periodo di riferimento</i>: <span>
                                                                           <xsl:value-of select="DataInizioPeriodo" /></span><xsl:call-template name="FormatDate">
@@ -1552,12 +1562,10 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                         <xsl:value-of select="DataFinePeriodo" /></span><xsl:call-template name="FormatDate">
                                                                         <xsl:with-param name="DateTime" select="DataFinePeriodo" /></xsl:call-template></xsl:if></xsl:if>
                                                                       <xsl:if test="ScontoMaggiorazione/Tipo"><br /><span><xsl:value-of select="ScontoMaggiorazione/Tipo" /></span>
-                                                                        <xsl:variable name="TCP"><xsl:value-of select="ScontoMaggiorazione/Tipo" /></xsl:variable>
+                                                                        <xsl:variable name="TSCM"><xsl:value-of select="ScontoMaggiorazione/Tipo" /></xsl:variable>
                                                                          <xsl:choose>
-                                                                              <xsl:when test="$TCP='SC'"> (Skonto)<i>(sconto)</i></xsl:when>
-                                                                              <xsl:when test="$TCP='PR'"> (Prämie)<i>(premio)</i></xsl:when>
-                                                                              <xsl:when test="$TCP='AB'"> (Gutschrift)<i>(abbuono)</i></xsl:when>
-                                                                              <xsl:when test="$TCP='AC'"> (Zusatzspesen)<i>(spesa accessoria)</i></xsl:when>
+                                                                              <xsl:when test="$TSCM='SC'"> (Skonto)<i>(sconto)</i></xsl:when>
+                                                                              <xsl:when test="$TSCM='MG'"> (Aufpreis)<i>(maggiorazione)</i></xsl:when>
                                                                               <xsl:otherwise><fehler> (!!! falscher Kodex !!!)<i>(!!! codice non previsto !!!)</i></fehler></xsl:otherwise>
                                                                          </xsl:choose><span><xsl:value-of select="ScontoMaggiorazione/Percentuale" />%</span></xsl:if></td>
                                                                          <td align="right"><xsl:if test="Quantita">
