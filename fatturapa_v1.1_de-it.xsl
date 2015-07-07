@@ -763,7 +763,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                         </xsl:if>
 
                                         <div class="page">
-                                             <div class="version">Version <xsl:value-of select="../@versione"/></div>
+                                             <div class="version">FatturaPA Version/<i>versione</i> <xsl:value-of select="../@versione"/></div>
 
                                              <xsl:variable name="Valuta" select="DatiGenerali/DatiGeneraliDocumento/Divisa" />
 
