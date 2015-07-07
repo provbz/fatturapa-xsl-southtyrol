@@ -25,7 +25,9 @@ http://www.gnu.org/licenses/.
      xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
      xmlns:a="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1">
      <xsl:output method="html" />
-     <xsl:variable name="VersionFT" select="'Stylesheet fatturapa_v1.1_de-it.xsl v8.4 - http://tinyurl.com/fatturapa-xsl-southtyrol © 2015 Ferdinand TAVERNINI GPLv3'" />
+     <xsl:variable name="VersionFT">
+         <p>Stylesheet fatturapa_v1.1_de-it.xsl v20150707 - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
+     </xsl:variable>
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="." />
 
      <xsl:template name="CodiceUnivocoUfficio">
@@ -35,7 +37,7 @@ http://www.gnu.org/licenses/.
                <xsl:when test="$kode = '9G9VCD'" ><span><xsl:value-of select="$kode" /></span><br />Rechtsamt<br /><i>UFFICIO AFFARI LEGALI</i></xsl:when>
                <xsl:when test="$kode = 'D31MSA'" ><span><xsl:value-of select="$kode" /></span><br />EDV-Amt<br /><i>UFFICIO EDP</i></xsl:when>
                <xsl:when test="$kode = '0COHRW'" ><span><xsl:value-of select="$kode" /></span><br />Personal- und Organisationsamt<br /><i>UFFICIO PERSONALE ED ORGANIZZAZIONE</i></xsl:when>
-               <xsl:when test="$kode = 'LSXW8L'" ><span><xsl:value-of select="$kode" /></span><br />Wohnungszuweisungund Mieter<br /><i>RIPARTIZIONE ALLOGGI ED INQUILINATO</i></xsl:when>
+               <xsl:when test="$kode = 'LSXW8L'" ><span><xsl:value-of select="$kode" /></span><br />Wohnungszuweisung und Mieterangelegenheiten<br /><i>RIPARTIZIONE ALLOGGI ED INQUILINATO</i></xsl:when>
                <xsl:when test="$kode = 'RW81BN'" ><span><xsl:value-of select="$kode" /></span><br />Mieterservicestelle Bozen<br /><i>CENTRO SERVIZI ALL'INQUILINATO DI BOLZANO</i></xsl:when>
                <xsl:when test="$kode = 'GNXLXD'" ><span><xsl:value-of select="$kode" /></span><br />Mieterservicestelle Meran<br /><i>CENTRO SERVIZI ALL'INQUILINATO DI MERANO</i></xsl:when>
                <xsl:when test="$kode = 'GSRA1J'" ><span><xsl:value-of select="$kode" /></span><br />Mieterservicestelle Brixen<br /><i>CENTRO SERVIZI ALL'INQUILINATO DI BRESSANONE</i></xsl:when>
@@ -111,8 +113,8 @@ http://www.gnu.org/licenses/.
 @media screen {  body { font-size: 10px }}
 body { max-width: 643px; min-width: 640px; }
 
-fattura-container { font-size: 8px; width: 80%; position: relative;}
-{ font-family: sans-serif; margin-left: auto; margin-right: auto; padding: 0; }
+#fattura-container { font-size: 10px; width: 100%; position: relative;}
+#fattura-elettronica { font-family: serif; margin-left: auto; margin-right: auto; padding: 0; }
 .version { font-size: 8px; float:right; color: #777777; }
 h1 { padding: 5px 0 0 0; margin: 0; font-size: 22px; }
 h2 { padding: 5px 0 0 0; margin: 0; font-size: 18px; }
@@ -153,7 +155,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                          <xsl:if test="a:FatturaElettronica">
                               <div id="fattura-elettronica"><h1>Italienische elektronische Rechnung<br /><i>FATTURA ELETTRONICA</i></h1><xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader">
                                         <div class="page">
-                                             <div class="version">FatturaPA Version/<i>versione</i> <xsl:value-of select="a:FatturaElettronica/@versione"/></div>
+                                             <div class="version">FatturaPA Version/<i>versione </i><xsl:value-of select="a:FatturaElettronica/@versione"/></div>
                                              <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/DatiTrasmissione">
                                                   <!--INIZIO DATI DELLA TRASMISSIONE-->
                                                   <div id="dati-trasmissione"><h3>Daten zur Übertragung - <i>Dati relativi alla trasmissione</i></h3><table id="t1">
@@ -167,34 +169,17 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                                 <xsl:if test="ProgressivoInvio"><xsl:value-of select="ProgressivoInvio" /></xsl:if>
                                                                                 </span></td></tr>
                                                                            </xsl:if>
-                                                                 <!--
-                                                                 <xsl:if test="IdTrasmittente">
-                                                                      <tr><td width="70px">1.1.1</td>
-                                                                           <td width="170px">Steuernummer des Senders<br /><i>Ident. del trasmittente</i></td>
-                                                                           <td width="364px"><span><xsl:value-of select="IdTrasmittente/IdPaese" /><xsl:value-of select="IdTrasmittente/IdCodice" /></span></td></tr>
-                                                                 </xsl:if>
-                                                                 <xsl:if test="ProgressivoInvio">
-                                                                      <tr><td>1.1.2</td>
-                                                                           <td>Übertragung Nr.<br /><i>Progressivo di invio</i></td>
-                                                                           <td><span><xsl:value-of select="ProgressivoInvio" /></span></td></tr>
-                                                                 </xsl:if>
-                                                                 <xsl:if test="FormatoTrasmissione">
-                                                                      <tr><td>1.1.3</td>
-                                                                           <td>Übertragungsformat<br /><i>Formato Trasmissione</i></td>
-                                                                           <td><span><xsl:value-of select="FormatoTrasmissione" /></span></td></tr>
-                                                                 </xsl:if>
-                                                                 -->
-                                                                 <xsl:if test="CodiceDestinatario">
-                                                                      <tr><td>1.1.4</td><td>Kodex der öff. Verwal.<br /><i>Cod. Amministra. destina.</i></td>
-                                                                           <td><xsl:call-template name="CodiceUnivocoUfficio"><xsl:with-param name="kode" select="CodiceDestinatario" /></xsl:call-template></td>
-                                                                      </tr>
-                                                                 </xsl:if>
-                                                                 <xsl:if test="ContattiTrasmittente/Telefono">
-                                                                      <tr><td>1.1.5.1</td><td>Telefonnummer Sender<br /><i>Telefono del trasmittente</i></td>
-                                                                           <td><span><xsl:value-of select="ContattiTrasmittente/Telefono" /></span></td></tr>
-                                                                 </xsl:if>
-                                                                 <xsl:if test="ContattiTrasmittente/Email">
-                                                                      <tr><td>1.1.5.2</td><td>E-Mail des Senders<br /><i>E-mail del trasmittente</i></td>
+                                                                           <xsl:if test="CodiceDestinatario">
+                                                                                <tr><td>1.1.4</td><td>Kodex der öff. Verwal.<br /><i>Cod. Amministra. destina.</i></td>
+                                                                                     <td><xsl:call-template name="CodiceUnivocoUfficio"><xsl:with-param name="kode" select="CodiceDestinatario" /></xsl:call-template></td>
+                                                                                </tr>
+                                                                           </xsl:if>
+                                                                           <xsl:if test="ContattiTrasmittente/Telefono">
+                                                                                <tr><td>1.1.5.1</td><td>Telefonnummer Sender<br /><i>Telefono del trasmittente</i></td>
+                                                                                     <td><span><xsl:value-of select="ContattiTrasmittente/Telefono" /></span></td></tr>
+                                                                           </xsl:if>
+                                                                           <xsl:if test="ContattiTrasmittente/Email">
+                                                                           <tr><td>1.1.5.2</td><td>E-Mail des Senders<br /><i>E-mail del trasmittente</i></td>
                                                                            <td><span><xsl:value-of select="ContattiTrasmittente/Email" /></span></td></tr>
                                                                  </xsl:if>
                                                             </xsl:for-each>
@@ -211,66 +196,16 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                             <h4>Anagrafische Daten - <i>Dati anagrafici</i></h4>
                                                                  <table id="t1">
                                                                  <xsl:for-each select="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore/DatiAnagrafici">
-
-                                                                      <!--
-                                                                      <xsl:if test="Anagrafica/Denominazione">
-                                                                           <tr><td width="70px">1.2.1.3.1</td><td width="170px">Benennung<br /><i>Denominazione</i></td>
-                                                                                <td width="364px"><span><xsl:value-of select="Anagrafica/Denominazione" /></span></td></tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Anagrafica/Titolo">
-                                                                           <tr><td>1.2.1.3.4</td><td>Titel<br /><i>Titolo</i></td>
-                                                                                <td><span><xsl:value-of select="Anagrafica/Titolo" /></span></td></tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Anagrafica/Nome">
-                                                                           <tr><td width="70px">1.2.1.3.2</td><td width="170px">Name<br /><i>Nome</i></td>
-                                                                                <td width="364px"><span><xsl:value-of select="Anagrafica/Nome" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Anagrafica/Cognome">
-                                                                           <tr><td>1.2.1.3.3</td><td>Nachname<br /><i>Cognome</i></td>
-                                                                                <td><span><xsl:value-of select="Anagrafica/Cognome" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      -->
-
                                                                       <xsl:if test="Anagrafica/Denominazione or Anagrafica/Nome">
-                                                                           <tr><td width="70px">1.2.1.[1|4|2|3]</td><td width="170px">Benennung<br /><i>Nominativo</i></td>
+                                                                           <tr><td width="70px">1.2.1.3.[1|4|2|3]</td><td width="170px">Benennung<br /><i>Nominativo</i></td>
                                                                                 <td width="364px"><span><xsl:value-of select="Anagrafica/Denominazione" />&#160;<xsl:value-of select="Anagrafica/Titolo" />&#160;<xsl:value-of select="Anagrafica/Nome" />&#160;<xsl:value-of select="Anagrafica/Cognome" /></span></td>
                                                                            </tr>
                                                                       </xsl:if>
-
-
                                                                       <xsl:if test="Anagrafica/CodEORI">
                                                                            <tr><td>1.2.1.3.5</td><td>EORI-Kodex<br /><i>Codice EORI</i></td>
                                                                                 <td><span><xsl:value-of select="Anagrafica/CodEORI" /></span></td>
                                                                            </tr>
                                                                       </xsl:if>
-
-                                                                      <!--
-
-                                                                      <xsl:if test="AlboProfessionale">
-                                                                           <tr><td>1.2.1.4</td><td>Zugehörigkeit Berufsalbum<br /><i>Albo professionale di appartenenza</i></td>
-                                                                                <td><span><xsl:value-of select="AlboProfessionale" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="ProvinciaAlbo">
-                                                                           <tr><td>1.2.1.5</td><td>Berufsalbum der Provinz<br /><i>Provincia di competenza dell'Albo</i></td>
-                                                                                <td><span><xsl:value-of select="ProvinciaAlbo" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="NumeroIscrizioneAlbo">
-                                                                           <tr><td>1.2.1.6</td><td>Einschreibungsnummer im Berufsalbum<br /><i>Numero iscrizione all'Albo</i></td>
-                                                                                <td><span><xsl:value-of select="NumeroIscrizioneAlbo" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="DataIscrizioneAlbo">
-                                                                           <tr><td>1.2.1.7</td><td>Datum der Einschreibung<br /><i>Data iscrizione all'Albo</i></td>
-                                                                                <td><span><xsl:value-of select="DataIscrizioneAlbo" /></span><xsl:call-template name="FormatDate"><xsl:with-param name="DateTime" select="DataIscrizioneAlbo" /></xsl:call-template></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-
-                                                                      -->
-
                                                                       <xsl:if test="AlboProfessionale or ProvinciaAlbo or NumeroIscrizioneAlbo or DataIscrizioneAlbo">
                                                                            <tr><td>1.2.1.[4|5|6|7]</td><td>Zugehörigkeit Berufsalbum<br /><i>Albo professionale di appartenenza</i></td>
                                                                                 <td><span><xsl:value-of select="AlboProfessionale" />&#160;<xsl:value-of select="ProvinciaAlbo" />&#160;<xsl:value-of select="NumeroIscrizioneAlbo" /></span><xsl:if test="DataIscrizioneAlbo">&#160;<span><xsl:value-of select="DataIscrizioneAlbo" /></span><xsl:call-template name="FormatDate"><xsl:with-param name="DateTime" select="DataIscrizioneAlbo" /></xsl:call-template></xsl:if></td>
@@ -324,39 +259,6 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                             <h4>Firmensitz - <i>Dati della sede</i></h4>
                                                             <table id="t1">
                                                                  <xsl:for-each select="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore/Sede">
-                                                                 <!--
-                                                                      <xsl:if test="Indirizzo">
-                                                                           <tr><td width="70px">1.2.2.1</td><td width="170px">Anschrift<br /><i>Indirizzo</i></td>
-                                                                                <td width="364px"><span><xsl:value-of select="Indirizzo" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="NumeroCivico">
-                                                                           <tr><td>1.2.2.2</td><td>Hausnummer<br /><i>Numero civico</i></td>
-                                                                                <td><span><xsl:value-of select="NumeroCivico" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="CAP">
-                                                                           <tr><td>1.2.2.3</td><td>PLZ<br /><i>CAP</i></td>
-                                                                                <td><span><xsl:value-of select="CAP" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Comune">
-                                                                           <tr><td>1.2.2.4</td><td>Gemeinde<br /><i>Comune</i></td>
-                                                                                <td><span><xsl:value-of select="Comune" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Provincia">
-                                                                           <tr><td>1.2.2.5</td><td>Provinz<br /><i>Provincia</i></td>
-                                                                                <td><span><xsl:value-of select="Provincia" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Nazione">
-                                                                           <tr><td>1.2.2.6</td><td>Land<br /><i>Nazione</i></td>
-                                                                                <td><span><xsl:value-of select="Nazione" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                 -->
-
                                                                       <xsl:if test="Indirizzo or NumeroCivico or CAP or Comune or Provincia or Nazione">
                                                                            <tr><td width="70px">1.2.2.[1|2|3|4|5|6]</td><td width="170px">Anschrift<br /><i>indirizzo</i></td>
                                                                                 <td width="364px"><span><xsl:value-of select="Indirizzo" />&#160;<xsl:value-of select="NumeroCivico" /><br /><xsl:value-of select="CAP" />&#160;<xsl:value-of select="Comune" />&#160;<xsl:value-of select="Provincia" />&#160;<xsl:value-of select="Nazione" /></span></td>
@@ -370,40 +272,6 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                             <h4>Daten der Organisation - <i>Dati della stabile organizzazione</i></h4>
                                                             <table id="t1">
                                                                  <xsl:for-each select="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore/StabileOrganizzazione">
-
-                                                                      <!--
-                                                                      <xsl:if test="Indirizzo">
-                                                                           <tr><td width="70px">1.2.3.1</td><td width="170px">Anschrift<br /><i>Indirizzo</i></td>
-                                                                                <td width="364px"><span><xsl:value-of select="Indirizzo" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="NumeroCivico">
-                                                                           <tr><td>1.2.3.2</td><td>Hausnummer<br /><i>Numero civico</i></td>
-                                                                                <td><span><xsl:value-of select="NumeroCivico" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="CAP">
-                                                                           <tr><td>1.2.3.3</td><td>PLZ<br /><i>CAP</i></td>
-                                                                                <td><span><xsl:value-of select="CAP" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Comune">
-                                                                           <tr><td>1.2.3.4</td><td>Gemeinde<br /><i>Comune</i></td>
-                                                                                <td><span><xsl:value-of select="Comune" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Provincia">
-                                                                           <tr><td>1.2.3.5</td><td>Provinz<br /><i>Provincia</i></td>
-                                                                                <td><span><xsl:value-of select="Provincia" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Nazione">
-                                                                           <tr><td>1.2.3.6</td><td>Land<br /><i>Nazione</i></td>
-                                                                                <td><span><xsl:value-of select="Nazione" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                 -->
-
                                                                       <xsl:if test="Indirizzo or NumeroCivico or CAP or Comune or Provincia or Nazione">
                                                                            <tr><td width="70px">1.2.3.[1|2|3|4|5]</td><td width="170px">Anschrift<br /><i>indirizzo</i></td>
                                                                                 <td width="364px"><span><xsl:value-of select="Indirizzo" />&#160;<xsl:value-of select="NumeroCivico" /><br /><xsl:value-of select="CAP" />&#160;<xsl:value-of select="Comune" />&#160;<xsl:value-of select="Provincia" />&#160;<xsl:value-of select="Nazione" /></span></td>
@@ -512,32 +380,6 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                                 <td><span><xsl:value-of select="CodiceFiscale" /></span></td>
                                                                                 </tr>
                                                                       </xsl:if>
-
-                                                                      <!--
-
-                                                                      <xsl:if test="Anagrafica/Denominazione">
-                                                                           <tr><td>1.3.1.3.1</td><td>Benennung<br /><i>Denominazione</i></td>
-                                                                                <td><span><xsl:value-of select="Anagrafica/Denominazione" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Anagrafica/Titolo">
-                                                                           <tr><td>1.3.1.3.4</td><td>Honorartitel<br /><i>Titolo onorifico</i></td>
-                                                                                <td><span><xsl:value-of select="Anagrafica/Titolo" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Anagrafica/Nome">
-                                                                           <tr><td>1.3.1.3.2</td><td>Name<br /><i>Nome</i></td>
-                                                                                <td><span><xsl:value-of select="Anagrafica/Nome" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Anagrafica/Cognome">
-                                                                           <tr><td>1.3.1.3.3</td><td>Nachname<br /><i>Cognome</i></td>
-                                                                                <td><span><xsl:value-of select="Anagrafica/Cognome" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-
-                                                                 -->
-
                                                                       <xsl:if test="Anagrafica/Denominazione or Anagrafica/Titolo or Anagrafica/Nome or Anagrafica/Cognome">
                                                                            <tr><td width="70px">1.3.1.3.[1|4|2|3]</td><td width="170px">Anschrift<br /><i>indirizzo</i></td>
                                                                                 <td width="364px"><span><xsl:value-of select="Anagrafica/Denominazione" />&#160;<xsl:value-of select="Anagrafica/Titolo" /><xsl:value-of select="Anagrafica/Nome" />&#160;<xsl:value-of select="Anagrafica/Cognome" /></span></td>
@@ -564,30 +406,6 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                             <h4>Anagrafische Daten - <i>Dati anagrafici</i></h4>
                                                             <table id="t1">
                                                                  <xsl:for-each select="a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/DatiAnagrafici">
-
-                                                                      <!--
-                                                                      <xsl:if test="Anagrafica/Denominazione">
-                                                                           <tr><td width="70px">1.4.1.3.1</td><td width="170px">Benennung<br /><i>Denominazione</i></td>
-                                                                                <td width="364px"><span><xsl:value-of select="Anagrafica/Denominazione" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Anagrafica/Titolo">
-                                                                           <tr><td>1.4.1.3.4</td><td>Honorartitel<br /><i>Titolo onorifico</i></td>
-                                                                                <td><span><xsl:value-of select="Anagrafica/Titolo" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Anagrafica/Nome">
-                                                                           <tr><td>1.4.1.3.2</td><td>Name<br /><i>Nome</i></td>
-                                                                                <td><span><xsl:value-of select="Anagrafica/Nome" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Anagrafica/Cognome">
-                                                                           <tr><td>1.4.1.3.3</td><td>Nachname<br /><i>Cognome</i></td>
-                                                                                <td><span><xsl:value-of select="Anagrafica/Cognome" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      -->
-
                                                                       <xsl:if test="Anagrafica/Denominazione or Anagrafica/Titolo or Anagrafica/Nome or Anagrafica/Cognome">
                                                                            <tr><td width="70px">1.4.1.3.[1|4|2|3]</td><td width="170px">Benennung<br /><i>denominazione</i></td>
                                                                                 <td width="364px"><span><xsl:value-of select="Anagrafica/Denominazione" />&#160;<xsl:value-of select="Anagrafica/Titolo" /><xsl:value-of select="Anagrafica/Nome" />&#160;<xsl:value-of select="Anagrafica/Cognome" /></span></td>
@@ -615,40 +433,6 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                             <h4>Firmensitz - <i>Dati della sede</i></h4>
                                                             <table id="t1">
                                                                  <xsl:for-each select="a:FatturaElettronica/FatturaElettronicaHeader/CessionarioCommittente/Sede">
-
-                                                                      <!--
-                                                                      <xsl:if test="Indirizzo">
-                                                                           <tr><td width="70px">1.4.2.1</td><td width="170px">Anschrift<br /><i>Indirizzo</i></td>
-                                                                                <td width="364px"><span><xsl:value-of select="Indirizzo" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="NumeroCivico">
-                                                                           <tr><td>1.4.2.2</td><td>Hausnummer<br /><i>Numero civico</i></td>
-                                                                                <td><span><xsl:value-of select="NumeroCivico" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="CAP">
-                                                                           <tr><td>1.4.2.3</td><td>PLZ<br /><i>CAP</i></td>
-                                                                                <td><span><xsl:value-of select="CAP" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Comune">
-                                                                           <tr><td>1.4.2.4</td><td>Gemeinde<br /><i>Comune</i></td>
-                                                                                <td><span><xsl:value-of select="Comune" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Provincia">
-                                                                           <tr><td>1.4.2.5</td><td>Provinz<br /><i>Provincia</i></td>
-                                                                                <td><span><xsl:value-of select="Provincia" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="Nazione">
-                                                                           <tr><td>1.4.2.6</td><td>Land<br /><i>Nazione</i></td>
-                                                                                <td><span><xsl:value-of select="Nazione" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      -->
-
                                                                       <xsl:if test="Indirizzo or NumeroCivico or CAP or Comune or Provincia or Nazione">
                                                                            <tr><td width="70px">1.4.2.[1|2|3|4|5|6]</td><td width="170px">Anschrift<br /><i>indirizzo</i></td>
                                                                                 <td width="364px"><span><xsl:value-of select="Indirizzo" />&#160;<xsl:value-of select="NumeroCivico" /><br /> <xsl:value-of select="CAP" />&#160;<xsl:value-of select="Comune" />&#160;<xsl:value-of select="Provincia" /> &#160;<xsl:value-of select="Nazione" /></span></td>
@@ -674,30 +458,6 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                             <xsl:if test="DatiAnagrafici">
                                                                  <h4>Anagrafische Daten - <i>Dati anagrafici</i></h4>
                                                                  <table id="t1">
-
-                                                                      <!--
-                                                                      <xsl:if test="DatiAnagrafici/Anagrafica/Denominazione">
-                                                                           <tr><td width="70px">1.5.1.3.1</td><td width="170px">Benennung<br /><i>Denominazione</i></td>
-                                                                                <td width="364px"><span><xsl:value-of select="DatiAnagrafici/Anagrafica/Denominazione" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="DatiAnagrafici/Anagrafica/Titolo">
-                                                                           <tr><td>1.5.1.3.4</td><td>Honorartitel<br /><i>Titolo onorifico</i></td>
-                                                                                <td><span><xsl:value-of select="DatiAnagrafici/Anagrafica/Titolo" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="DatiAnagrafici/Anagrafica/Nome">
-                                                                           <tr><td>1.5.1.3.2</td><td>Name<br /><i>Nome</i></td>
-                                                                                <td><span><xsl:value-of select="DatiAnagrafici/Anagrafica/Nome" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="DatiAnagrafici/Anagrafica/Cognome">
-                                                                           <tr><td>1.5.1.3.3</td><td>Nachname<br /><i>Cognome</i></td>
-                                                                                <td><span><xsl:value-of select="DatiAnagrafici/Anagrafica/Cognome" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      -->
-
                                                                       <xsl:if test="DatiAnagrafici/Anagrafica/Denominazione or DatiAnagrafici/Anagrafica/Titolo or DatiAnagrafici/Anagrafica/Nome or DatiAnagrafici/Anagrafica/Cognome">
                                                                            <tr><td width="70px">1.5.1.3.[1|4|2|3]</td><td width="170px">Anschrift<br /><i>indirizzo</i></td>
                                                                                 <td width="364px"><span><xsl:value-of select="DatiAnagrafici/Anagrafica/Denominazione" />&#160;<xsl:value-of select="DatiAnagrafici/Anagrafica/Titolo" />&#160;<xsl:value-of select="DatiAnagrafici/Anagrafica/Nome" /> &#160;<xsl:value-of select="DatiAnagrafici/Anagrafica/Cognome" /></span></td>
@@ -746,7 +506,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                              </xsl:if>
                                              <!--FINE DATI SOGGETTO EMITTENTE-->
 
-                                             <div class="footer"><xsl:value-of select="$VersionFT" /><br /><a href="http://www.fatturapa.gov.it">www.fatturapa.gov.it</a></div>
+                                             <div class="footer"><xsl:copy-of select="$VersionFT" /></div>
                                         </div>
                                    </xsl:if>
                                    <!--FINE DATI HEADER-->
@@ -763,7 +523,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                         </xsl:if>
 
                                         <div class="page">
-                                             <div class="version">FatturaPA Version/<i>versione</i> <xsl:value-of select="../@versione"/></div>
+                                             <div class="version">FatturaPA Version/<i>versione </i><xsl:value-of select="../@versione"/></div>
 
                                              <xsl:variable name="Valuta" select="DatiGenerali/DatiGeneraliDocumento/Divisa" />
 
@@ -793,51 +553,11 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                                           </xsl:choose></td>
                                                                            </tr>
                                                                       </xsl:if>
-
-                                                                      <!--
-                                                                      <xsl:if test="DatiGenerali/DatiGeneraliDocumento/TipoDocumento">
-                                                                           <tr><td width="70px">2.1.1.1</td><td width="170px">Dokumententyp<br /><i>Tipologia documento</i></td>
-                                                                                <td width="364px"><span><xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/TipoDocumento" /> </span><xsl:variable name="TD"><xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/TipoDocumento" /> </xsl:variable>
-                                                                                          <xsl:choose>
-                                                                                               <xsl:when test="$TD='TD01'"> (Rechnung)<i>(fattura)</i></xsl:when>
-                                                                                               <xsl:when test="$TD='TD02'"> (Accontorechnung)<i>(acconto/anticipo su fattura)</i></xsl:when>
-                                                                                               <xsl:when test="$TD='TD03'"> (Accontohonorar)<i>(acconto/anticipo su parcella)</i></xsl:when>
-                                                                                               <xsl:when test="$TD='TD04'"> (Gutschrift)<i>(nota di credito)</i></xsl:when>
-                                                                                               <xsl:when test="$TD='TD05'"> (Lastschrift)<i>(nota di debito)</i></xsl:when>
-                                                                                               <xsl:when test="$TD='TD06'"> (Honorarnote)<i>(parcella)</i></xsl:when>
-                                                                                               <xsl:when test="$TD=''"></xsl:when>
-                                                                                               <xsl:otherwise><fehler> (!!! falscher Kodex !!!)<i>(!!! codice non previsto !!!)</i></fehler></xsl:otherwise>
-                                                                                          </xsl:choose></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                           <xsl:if test="DatiGenerali/DatiGeneraliDocumento/Divisa">
-                                                                           <tr><td>2.1.1.2</td><td>Währung<br /><i>Valuta importi</i></td>
-                                                                                <td><span><xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Divisa" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      -->
-
                                                                       <xsl:if test="DatiGenerali/DatiGeneraliDocumento/Data">
                                                                            <tr><td>2.1.1.[4|3]</td><td>Dok.-nummer und -datum<br /><i>Numero e data doc.</i></td>
                                                                                 <td><span><xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Numero" />&#160;-&#160;<xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Data" /></span><xsl:call-template name="FormatDate"><xsl:with-param name="DateTime" select="DatiGenerali/DatiGeneraliDocumento/Data" /></xsl:call-template>
                                                                            </td></tr>
                                                                       </xsl:if>
-
-
-                                                                      <!--
-                                                                      <xsl:if test="DatiGenerali/DatiGeneraliDocumento/Data">
-                                                                           <tr><td>2.1.1.3</td><td>Dokumentdatum<br /><i>Data documento</i></td>
-                                                                                <td><span><xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Data" /></span><xsl:call-template name="FormatDate"><xsl:with-param name="DateTime" select="DatiGenerali/DatiGeneraliDocumento/Data" /></xsl:call-template>
-                                                                           </td></tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="DatiGenerali/DatiGeneraliDocumento/Numero">
-                                                                           <tr><td>2.1.1.4</td><td>Dokumentennummer<br /><i>Numero documento</i></td>
-                                                                                <td><span>
-                                                                                     <xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Numero" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      -->
-
                                                                       <xsl:if test="DatiGenerali/DatiGeneraliDocumento/ImportoTotaleDocumento">
                                                                            <tr><td>2.1.1.9</td><td>Gesamtbetrag Dokument<br /><i>Importo totale documento</i></td>
                                                                                 <td><span><xsl:value-of select="$Valuta" />&#160;<xsl:variable name="ITD" select="DatiGenerali/DatiGeneraliDocumento/ImportoTotaleDocumento" /><xsl:value-of select="format-number($ITD, '###.##0,00', 'euro')" /></span></td>
@@ -1311,25 +1031,6 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                                      <xsl:if test="RiferimentoNumeroLinea"><br />Betrifft Zeile/<i>Rif.linea</i>&#160;<xsl:for-each select="RiferimentoNumeroLinea"><span><xsl:if test="(position( )) > 1">, </xsl:if><xsl:value-of select="." /></span></xsl:for-each></xsl:if>
                                                                                 </td></tr>
                                                                            </xsl:if>
-
-                                                                           <!--
-                                                                           <xsl:if test="NumeroDDT">
-                                                                                <tr><td width="70px">2.1.8.1</td><td width="170px">Nummer WBS<br /><i>Numero DDT</i></td>
-                                                                                     <td width="364px"><span><xsl:value-of select="NumeroDDT" /></span></td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="DataDDT">
-                                                                                <tr><td>2.1.8.2</td><td>Datum WBS<br /><i>Data DDT</i></td>
-                                                                                     <td><span><xsl:value-of select="DataDDT" /></span><xsl:call-template name="FormatDate"><xsl:with-param name="DateTime" select="DataDDT" /></xsl:call-template></td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           <xsl:if test="RiferimentoNumeroLinea">
-                                                                                <tr><td>2.1.8.3</td><td>Zugehörige Zeilennummer der Rechnung<br /><i>Numero linea di fattura a cui si riferisce</i></td>
-                                                                                     <td><xsl:for-each select="RiferimentoNumeroLinea"><span><xsl:if test="(position( )) > 1">, </xsl:if><xsl:value-of select="." /></span></xsl:for-each></td>
-                                                                                </tr>
-                                                                           </xsl:if>
-                                                                           -->
-
                                                                       </xsl:for-each>
                                                                  </table>
                                                             </div>
@@ -1543,7 +1244,6 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                         </xsl:if>
                                                                         <span><xsl:value-of select="Descrizione" /></span>
                                                                       </xsl:if>
-
                                                                       <xsl:if test="TipoCessionePrestazione"><br /><span><xsl:value-of select="TipoCessionePrestazione" /></span>
                                                                         <xsl:variable name="TCP"><xsl:value-of select="TipoCessionePrestazione" /></xsl:variable>
                                                                          <xsl:choose>
@@ -1695,9 +1395,6 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                  </xsl:if>
 
                                                                  <xsl:if test="DettaglioPagamento">
-                                                                      <!--
-                                                                      <tr><td></td><td colspan="2"><h5>Details zur Bezahlung - <i>Dettaglio pagamento</i></h5></td></tr>
-                                                                      -->
                                                                  <xsl:variable name="TOTALRATEN" select="count(DettaglioPagamento)" />
                                                                  <xsl:for-each select="DettaglioPagamento">
                                                                  <xsl:if test="$TOTALRATEN>1">
@@ -1867,7 +1564,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                              </xsl:if>
                                              <!--FINE ALLEGATI-->
 
-                                             <div class="footer"><xsl:value-of select="$VersionFT" /><br /><a href="http://www.fatturapa.gov.it">www.fatturapa.gov.it</a></div>
+                                             <div class="footer"><xsl:copy-of select="$VersionFT" /></div>
                                         </div>
                                    </xsl:for-each>
                                    <!--FINE BODY-->
