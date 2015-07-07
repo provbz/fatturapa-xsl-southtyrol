@@ -21,7 +21,7 @@ http://www.gnu.org/licenses/.
 -->
 
 <xsl:stylesheet 
-     version="1.0" 
+     version="1.1" 
      xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
      xmlns:a="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1">
      <xsl:output method="html" />
