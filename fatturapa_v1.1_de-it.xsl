@@ -143,7 +143,7 @@ table td {overflow: hidden;}
 table, td, th { border: 1px solid black; border-collapse: collapse;}
 #t1 td, #t1 th { border: none; }
 #ti td { color: #000000; background-color: #EAF2D3;}
-th, td { padding: 2px;}
+th, td { padding: 2px; word-wrap:break-word}
 div.footer { padding: 10px 0 0 0; margin: 0; font-size: 10px; text-align: center; color: #777777; }
 tr:nth-of-type(even){background-color: #F3F3F3;}
 tr:nth-of-type(odd) {background-color:#ddd;}
