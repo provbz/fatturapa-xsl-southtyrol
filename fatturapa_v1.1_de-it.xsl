@@ -296,22 +296,23 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                                 <td><span><xsl:value-of select="NumeroREA" /></span></td>
                                                                            </tr>
                                                                       </xsl:if>
-                                                                      <xsl:if test="CapitaleSociale">
-                                                                           <tr><td>1.2.4.3</td><td>Handelskapital<br /><i>Capitale sociale</i></td>
-                                                                                <td><span><xsl:value-of select="CapitaleSociale" /></span></td>
-                                                                           </tr>
-                                                                      </xsl:if>
-                                                                      <xsl:if test="SocioUnico">
-                                                                           <tr><td>1.2.4.4</td><td>Anzahl Gesellschafter<br /><i>Numero soci</i></td>
-                                                                                <td><span><xsl:value-of select="SocioUnico" /></span>
-                                                                                <xsl:variable name="NS"><xsl:value-of select="SocioUnico" /></xsl:variable>
-                                                                                <xsl:choose>
-                                                                                     <xsl:when test="$NS='SU'"> (Einzelgesellschafter)<i>(socio unico)</i></xsl:when>
-                                                                                     <xsl:when test="$NS='SM'"> (mehrere Gesellschafter)<i>(più soci)</i></xsl:when>
-                                                                                     <xsl:when test="$NS=''"></xsl:when>
-                                                                                     <xsl:otherwise><fehler> (!!! falscher Kodex !!!)<i>(!!! codice non previsto !!!)</i></fehler></xsl:otherwise>
-                                                                                </xsl:choose></td>
-                                                                           </tr>
+                                                                      <xsl:if test="CapitaleSociale or SocioUnico">
+                                                                           <tr><td>1.2.4.[3|4]</td><td>Handelskapital<br /><i>Capitale sociale </i></td>
+                                                                           <td>
+                                                                           <xsl:if test="CapitaleSociale">
+                                                                                     <span><xsl:value-of select="format-number(CapitaleSociale, '###.##0,00 €', 'euro')" /></span>
+                                                                           </xsl:if>
+                                                                           <xsl:if test="SocioUnico">
+                                                                                &#160;<span><xsl:value-of select="SocioUnico" /></span>
+                                                                                     <xsl:variable name="NS"><xsl:value-of select="SocioUnico" /></xsl:variable>
+                                                                                     <xsl:choose>
+                                                                                          <xsl:when test="$NS='SU'"> (Einzelgesellschafter)<i>(socio unico)</i></xsl:when>
+                                                                                          <xsl:when test="$NS='SM'"> (mehrere Gesellschafter)<i>(più soci)</i></xsl:when>
+                                                                                          <xsl:when test="$NS=''"></xsl:when>
+                                                                                          <xsl:otherwise><fehler> (!!! falscher Kodex !!!)<i>(!!! codice non previsto !!!)</i></fehler></xsl:otherwise>
+                                                                                     </xsl:choose>
+                                                                           </xsl:if>
+                                                                           </td></tr>
                                                                       </xsl:if>
                                                                       <xsl:if test="StatoLiquidazione">
                                                                            <tr><td>1.2.4.5</td><td>Auflösung<br /><i>Stato di liquidazione</i></td>
