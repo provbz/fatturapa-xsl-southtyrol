@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- Versionsdatum: 2015-07-04 -->
+<!-- Versionsdatum: 2015-07-13 -->
 <!-- Feedback erwünscht an info@ing-tavernini.com -->
 <!--
 fatturapa_v1.1_de-it.xsl
@@ -26,7 +26,7 @@ http://www.gnu.org/licenses/.
      xmlns:a="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1">
      <xsl:output method="html" />
      <xsl:variable name="VersionFT">
-         <p>Stylesheet fatturapa_v1.1_de-it.xsl v20150707 - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
+         <p>Stylesheet fatturapa_v1.1_de-it.xsl v20150713 ft - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
      </xsl:variable>
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="." />
 
@@ -775,7 +775,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                  <xsl:for-each select="DatiGenerali/DatiOrdineAcquisto">
                                                                            <xsl:if test="RiferimentoNumeroLinea">
                                                                                 <tr><td width="70px">2.1.2.1</td><td width="170px">Zugehörige Zeilennummer der Rechnung<br /><i>Numero linea di fattura a cui si riferisce</i></td>
-                                                                                     <td width="364px"><xsl:for-each select="RiferimentoNumeroLinea"><span><xsl:if test="(position( )) > 1">, </xsl:if><xsl:value-of select="." /></span><br /></xsl:for-each></td>
+                                                                                     <td width="364px"><xsl:for-each select="RiferimentoNumeroLinea"><span><xsl:if test="(position( )) > 1">, </xsl:if><xsl:value-of select="." /></span></xsl:for-each></td>
                                                                                 </tr>
                                                                            </xsl:if>
                                                                            <xsl:if test="IdDocumento">
