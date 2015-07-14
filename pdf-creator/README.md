@@ -13,14 +13,12 @@ The input/output files can be specified using the System Properties. If not spec
 
 ## Usage examples:
 
-```java -jar pdfcreat.jar```
-uses file.xml and file.xsl as inputs and file.pdf as pdf output.
-
-```java -Dxslinput=fatturapa_v1.1.xsl -Dpdfoutput=fatturapa.pdf -Dxmlinput=fatturapa_v1.1.xml -jar pdfcreat.jar```
-uses fatturapa_v1.1.xml and fatturapa_v1.1.xsl as inputs and fatturapa.pdf as pdf output.
-
-```java -Dxmlinput=fatturapa_v1.1.xml -jar pdfcreat.jar```
-uses fatturapa_v1.1.xml as xml input, input.xsl as input stylesheet and produces fatturapa_v1.1.pdf as output.
+- ```java -jar pdfcreat.jar```
+(uses `file.xml` and `file.xsl` as inputs and `file.pdf` as pdf output)
+- ```java -Dxslinput=fatturapa_v1.1.xsl -Dpdfoutput=fatturapa.pdf -Dxmlinput=fatturapa_v1.1.xml -jar pdfcreat.jar```
+(uses `fatturapa_v1.1.xml` and `fatturapa_v1.1.xsl` as inputs and `fatturapa.pdf` as pdf output)
+- ```java -Dxmlinput=fatturapa_v1.1.xml -jar pdfcreat.jar```
+(uses `fatturapa_v1.1.xml` as xml input, `input.xsl` as input stylesheet and produces `fatturapa_v1.1.pdf as output`)
 
 ## Dependencies:
 
