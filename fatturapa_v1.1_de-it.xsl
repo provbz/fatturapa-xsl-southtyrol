@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- Versionsdatum: 2015-07-13 -->
+<!-- Versionsdatum: 2015-07-17 -->
 <!-- Feedback erwünscht an info@ing-tavernini.com -->
 <!--
 fatturapa_v1.1_de-it.xsl
@@ -26,7 +26,7 @@ http://www.gnu.org/licenses/.
      xmlns:a="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1">
      <xsl:output method="html" />
      <xsl:variable name="VersionFT">
-         <p>Stylesheet fatturapa_v1.1_de-it.xsl v20150713 ft - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
+         <p>Stylesheet fatturapa_v1.1_de-it.xsl v20150717 ft - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
      </xsl:variable>
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="." />
 
@@ -1255,6 +1255,32 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                               <xsl:when test="$TCP='AC'"> (Zusatzspesen)<i>(spesa accessoria)</i></xsl:when>
                                                                               <xsl:otherwise><fehler> (!!! falscher Kodex !!!)<i>(!!! codice non previsto !!!)</i></fehler></xsl:otherwise>
                                                                          </xsl:choose><span><xsl:value-of select="ScontoMaggiorazione/Percentuale" />%</span></xsl:if>
+                                                                      <xsl:if test="AltriDatiGestionali">
+                                                                          <xsl:for-each select="AltriDatiGestionali">
+                                                                              <xsl:if test="TipoDato">
+                                                                                  <br />
+                                                                                  <!-- 2.2.1.16.1: Datentyp <i>Tipo dato:</i> -->
+                                                                                  <xsl:value-of select="TipoDato" />:
+                                                                              </xsl:if>
+                                                                              <xsl:if test="RiferimentoTesto">
+                                                                                  <br />
+                                                                                  <!-- 2.2.1.16.2: Text-Wert <i>Valore testo</i> -->
+                                                                                  <span><xsl:value-of select="RiferimentoTesto" /></span>
+                                                                              </xsl:if>
+                                                                              <xsl:if test="RiferimentoNumero">
+                                                                                  <br />
+                                                                                  <!-- 2.2.1.16.3: Nummerischer Wert<i>Valore numerico</i> -->
+                                                                                  <span><xsl:value-of select="RiferimentoNumero" /></span>
+                                                                              </xsl:if>
+                                                                              <xsl:if test="RiferimentoNumero">
+                                                                                  <br />
+                                                                                      <!-- 2.2.1.16.4: Datumswert <i>Valore data </i>  -->
+                                                                                      <span><xsl:value-of select="RiferimentoData" /></span><xsl:call-template name="FormatDate">
+                                                                                          <xsl:with-param name="DateTime" select="RiferimentoData" />
+                                                                                      </xsl:call-template>
+                                                                              </xsl:if>
+                                                                          </xsl:for-each>
+                                                                      </xsl:if>
                                                                       <xsl:if test="DataInizioPeriodo"><br />
                                                                         <xsl:if test="DataInizioPeriodo">Datum Beginn des Leistungszeitraumes <i>inizio periodo di riferimento</i>: <span>
                                                                           <xsl:value-of select="DataInizioPeriodo" /></span><xsl:call-template name="FormatDate">
