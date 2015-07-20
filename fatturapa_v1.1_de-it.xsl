@@ -1272,7 +1272,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                                   <!-- 2.2.1.16.3: Nummerischer Wert<i>Valore numerico</i> -->
                                                                                   <span><xsl:value-of select="RiferimentoNumero" /></span>
                                                                               </xsl:if>
-                                                                              <xsl:if test="RiferimentoNumero">
+                                                                              <xsl:if test="RiferimentoData">
                                                                                   <br />
                                                                                       <!-- 2.2.1.16.4: Datumswert <i>Valore data </i>  -->
                                                                                       <span><xsl:value-of select="RiferimentoData" /></span><xsl:call-template name="FormatDate">
