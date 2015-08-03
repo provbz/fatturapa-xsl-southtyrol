@@ -23,7 +23,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package pdfcreat;
+package pdfcreator;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
