@@ -123,7 +123,7 @@ h4 { padding: 5px 0 0 0; margin: 0; font-size: 12px; }
 h5 { padding: 5px 0 0 0; margin: 0; font-size: 10px; font-style: italic; }
 ul { list-style-type: none; margin: 0 !important; padding: 15px 0 0 40px !important; }
 ul li {}
-span { font-weight: bold; }
+span { font-weight: bold; font-size: 10pt;}
 fehler {color: red; text-decoration:blink; }
 div { padding: 0; margin: 0; }
 div.page {
