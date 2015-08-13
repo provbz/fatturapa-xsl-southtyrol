@@ -1299,7 +1299,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                          <td align="right"><xsl:if test="Quantita">
                                                                          <span><xsl:value-of select="format-number(Quantita, '#.###,###','euro')" /></span></xsl:if></td>
                                                                          <td><xsl:if test="UnitaMisura"><span><xsl:value-of select="UnitaMisura" /></span></xsl:if></td>
-                                                                         <td align="right"><xsl:if test="PrezzoUnitario"><span><xsl:value-of select="format-number(PrezzoUnitario, '###.##0,00', 'euro')" /></span></xsl:if></td>
+                                                                         <td align="right"><xsl:if test="PrezzoUnitario"><span><xsl:value-of select="format-number(PrezzoUnitario, '###.##0,#####', 'euro')" /></span></xsl:if></td>
                                                                          <td align="right"><xsl:if test="ScontoMaggiorazione/Importo"><span><xsl:value-of select="format-number(ScontoMaggiorazione/Importo, '###.##0,00', 'euro')" /></span></xsl:if></td>
                                                                          <td align="right"><xsl:if test="PrezzoTotale"><span><xsl:value-of select="format-number(PrezzoTotale, '###.##0,00', 'euro')"  /></span></xsl:if></td>
                                                                          <td align="center"><xsl:if test="AliquotaIVA">
