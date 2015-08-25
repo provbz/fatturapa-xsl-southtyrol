@@ -26,7 +26,7 @@ http://www.gnu.org/licenses/.
      xmlns:a="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1">
      <xsl:output method="html" />
      <xsl:variable name="VersionFT">
-         <p>Stylesheet fatturapa_v1.1_de-it.xsl v20150813 pd - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
+         <p>Stylesheet fatturapa_v1.1_de-it.xsl v20150825 ft - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
      </xsl:variable>
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="." />
 
@@ -1289,18 +1289,26 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                           <xsl:if test="DataFinePeriodo">Datum Ende des Leistungszeitraumes <i>Data fine periodo di riferimento</i>: <span>
                                                                         <xsl:value-of select="DataFinePeriodo" /></span><xsl:call-template name="FormatDate">
                                                                         <xsl:with-param name="DateTime" select="DataFinePeriodo" /></xsl:call-template></xsl:if></xsl:if>
-                                                                      <xsl:if test="ScontoMaggiorazione/Tipo"><br /><span><xsl:value-of select="ScontoMaggiorazione/Tipo" /></span>
-                                                                        <xsl:variable name="TSCM"><xsl:value-of select="ScontoMaggiorazione/Tipo" /></xsl:variable>
-                                                                         <xsl:choose>
-                                                                              <xsl:when test="$TSCM='SC'"> (Skonto)<i>(sconto)</i></xsl:when>
-                                                                              <xsl:when test="$TSCM='MG'"> (Aufpreis)<i>(maggiorazione)</i></xsl:when>
-                                                                              <xsl:otherwise><fehler> (!!! falscher Kodex !!!)<i>(!!! codice non previsto !!!)</i></fehler></xsl:otherwise>
-                                                                         </xsl:choose><span><xsl:value-of select="ScontoMaggiorazione/Percentuale" />%</span></xsl:if></td>
-                                                                         <td align="right"><xsl:if test="Quantita">
-                                                                         <span><xsl:value-of select="format-number(Quantita, '#.###,###','euro')" /></span></xsl:if></td>
-                                                                         <td><xsl:if test="UnitaMisura"><span><xsl:value-of select="UnitaMisura" /></span></xsl:if></td>
-                                                                         <td align="right"><xsl:if test="PrezzoUnitario"><span><xsl:value-of select="format-number(PrezzoUnitario, '###.##0,#####', 'euro')" /></span></xsl:if></td>
-                                                                         <td align="right"><xsl:if test="ScontoMaggiorazione/Importo"><span><xsl:value-of select="format-number(ScontoMaggiorazione/Importo, '###.##0,00', 'euro')" /></span></xsl:if></td>
+                                                                      <xsl:if test="ScontoMaggiorazione/Tipo">
+                                                                           <xsl:for-each select="ScontoMaggiorazione">
+                                                                                <br /><span><xsl:value-of select="ScontoMaggiorazione/Tipo" /></span>
+                                                                                <xsl:variable name="TSCM"><xsl:value-of select="ScontoMaggiorazione/Tipo" /></xsl:variable>
+                                                                                <xsl:choose>
+                                                                                     <xsl:when test="$TSCM='SC'"> (Skonto)<i>(sconto)</i></xsl:when>
+                                                                                     <xsl:when test="$TSCM='MG'"> (Aufpreis)<i>(maggiorazione)</i></xsl:when>
+                                                                                     <xsl:otherwise><fehler> (!!! falscher Kodex !!!)<i>(!!! codice non previsto !!!)</i></fehler></xsl:otherwise>
+                                                                                </xsl:choose><span><xsl:value-of select="ScontoMaggiorazione/Percentuale" />%</span></xsl:if></td>
+                                                                           </xsl:for-each>
+                                                                           <td align="right"><xsl:if test="Quantita">
+                                                                           <span><xsl:value-of select="format-number(Quantita, '#.###,###','euro')" /></span></xsl:if></td>
+                                                                           <td><xsl:if test="UnitaMisura"><span><xsl:value-of select="UnitaMisura" /></span></xsl:if></td>
+                                                                           <td align="right"><xsl:if test="PrezzoUnitario"><span><xsl:value-of select="format-number(PrezzoUnitario, '###.##0,#####', 'euro')" /></span></xsl:if></td>
+                                                                                <td align="right">
+                                                                                <xsl:for-each select="ScontoMaggiorazione">
+                                                                                <xsl:if test="ScontoMaggiorazione/Importo">
+                                                                                     <span><xsl:value-of select="format-number(ScontoMaggiorazione/Importo, '###.##0,00', 'euro')" /></span>
+                                                                                </xsl:if>
+                                                                                </xsl:for-each></td>
                                                                          <td align="right"><xsl:if test="PrezzoTotale"><span><xsl:value-of select="format-number(PrezzoTotale, '###.##0,00', 'euro')"  /></span></xsl:if></td>
                                                                          <td align="center"><xsl:if test="AliquotaIVA">
                                                                          <xsl:variable name="IVA" select="AliquotaIVA"/>
