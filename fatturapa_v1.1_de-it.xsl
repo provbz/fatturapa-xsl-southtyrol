@@ -1297,8 +1297,10 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                                      <xsl:when test="$TSCM='SC'"> (Skonto)<i>(sconto)</i></xsl:when>
                                                                                      <xsl:when test="$TSCM='MG'"> (Aufpreis)<i>(maggiorazione)</i></xsl:when>
                                                                                      <xsl:otherwise><fehler> (!!! falscher Kodex !!!)<i>(!!! codice non previsto !!!)</i></fehler></xsl:otherwise>
-                                                                                </xsl:choose><span><xsl:value-of select="ScontoMaggiorazione/Percentuale" />%</span></xsl:if></td>
+                                                                                </xsl:choose><span><xsl:value-of select="ScontoMaggiorazione/Percentuale" />%</span>
                                                                            </xsl:for-each>
+                                                                         </xsl:if>
+                                                                       </td>
                                                                            <td align="right"><xsl:if test="Quantita">
                                                                            <span><xsl:value-of select="format-number(Quantita, '#.###,###','euro')" /></span></xsl:if></td>
                                                                            <td><xsl:if test="UnitaMisura"><span><xsl:value-of select="UnitaMisura" /></span></xsl:if></td>
