@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<!-- Versionsdatum: 2015-08-13 -->
+<!-- Versionsdatum: 2015-09-21 -->
 <!-- Feedback erwünscht an info@ing-tavernini.com -->
 <!--
 fatturapa_v1.1_de-it.xsl
@@ -26,7 +26,7 @@ http://www.gnu.org/licenses/.
      xmlns:a="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1">
      <xsl:output method="html" />
      <xsl:variable name="VersionFT">
-         <p>Stylesheet fatturapa_v1.1_de-it.xsl v20150919 ft - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
+         <p>Stylesheet fatturapa_v1.1_de-it.xsl v20150921 ft - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
      </xsl:variable>
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="." />
 
@@ -738,24 +738,29 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                            <xsl:for-each select="DatiGenerali/DatiGeneraliDocumento/ScontoMaggiorazione">
                                                                                 <table id="t1">
                                                                                      <xsl:if test="Tipo">
-                                                                                          <tr><td width="70px">2.1.1.8.1</td><td width="170px">Typologie<br /><i>Tipologia</i></td>
-                                                                                               <td width="364px"><span><xsl:value-of select="Tipo" /></span>
+                                                                                          <tr><td width="70px">2.1.1.8.[2|1]</td><td width="170px">Prozentsatz-Typologie<br /><i>Percentuale e tipologia</i></td>
+                                                                                               <td width="364px">
+                                                                                               <xsl:if test="Percentuale">
+                                                                                                    <span><xsl:value-of select="Percentuale" /> % </span>
+                                                                                               </xsl:if>
+                                                                                               <span><xsl:value-of select="Tipo" /></span>                                                                                          <tr><td width="70px">2.1.1.8.1</td><td width="170px">Typologie<br /><i>Tipologia</i></td>
                                                                                                <xsl:variable name="TSM"><xsl:value-of select="Tipo" /></xsl:variable>
                                                                                                <xsl:choose>
-                                                                                                    <xsl:when test="$TSM='SC'"> (sconto)</xsl:when>
-                                                                                                    <xsl:when test="$TSM='MG'"> (maggiorazione)</xsl:when>
+                                                                                                    <xsl:when test="$TSM='SC'"> (Skonto)<i>(sconto)</i></xsl:when>
+                                                                                                    <xsl:when test="$TSM='MG'"> (Aufpreis)<i>(maggiorazione)</i></xsl:when>
                                                                                                     <xsl:otherwise> <fehler> (!!! falscher Kodex !!!)<i>(!!! codice non previsto !!!)</i></fehler></xsl:otherwise>
                                                                                                </xsl:choose></td>
                                                                                           </tr>
                                                                                      </xsl:if>
-                                                                                     <xsl:if test="Percentuale">
-                                                                                          <tr><td>2.1.1.8.2</td><td>Prozentsatz<br /><i>Percentuale</i></td>
-                                                                                               <td><span><xsl:value-of select="Percentuale" /></span></td>
-                                                                                          </tr>
-                                                                                     </xsl:if>
                                                                                      <xsl:if test="Importo">
                                                                                           <tr><td>2.1.1.8.3</td><td>Betrag<br /><i>Importo</i></td>
-                                                                                               <td><span><xsl:value-of select="Importo" /></span></td>
+                                                                                               <td><span>
+                                                                                               <xsl:variable name="TSCM"><xsl:value-of select="Tipo" /></xsl:variable>
+                                                                                               <xsl:choose>
+                                                                                                    <xsl:when test="$TSCM='SC'">-</xsl:when>
+                                                                                                    <xsl:when test="$TSCM='MG'">+</xsl:when>
+                                                                                               </xsl:choose>
+                                                                                               <xsl:value-of select="format-number(Importo, '###.##0,00', 'euro')" /></span></td>
                                                                                           </tr>
                                                                                      </xsl:if>
                                                                                 </table>
@@ -1222,106 +1227,113 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                        <xsl:if test="DatiBeniServizi/DettaglioLinee">
                                                             <div id="righe">
                                                                  <h3>Daten zur Lieferung - <i>Dati relativi alle linee di dettaglio della fornitura</i></h3>
-                                                                <table id="t2">
-                                                                  <tr bgcolor="#998c99">
-                                                                    <th align="center" width="25">Nr</th>
-                                                                    <th width="175">Beschreibung<br />Descrizione cessione/prestazione</th>
-                                                                    <th width="65">Menge<br />Quantità</th>
-                                                                    <th width="20">ME<br />UM</th>
-                                                                    <th width="85">Preis<br />Prezzo</th>
-                                                                    <th width="80">Skonto<br />Sconto</th>
-                                                                    <th width="85">Preis gesamt<br />Prezzo totale</th>
-                                                                    <th width="40">MwSt<br />IVA<br />(%)</th>
-                                                                  </tr>
-                                                                                                       <xsl:for-each select="DatiBeniServizi/DettaglioLinee">
-                                                                                                            <tr>
-                                                                    <td align="center"><span><xsl:value-of select="NumeroLinea" /></span></td>
+                                                                 <table id="t2">
+                                                                 <tr bgcolor="#998c99">
+                                                                      <th align="center" width="25">Nr</th>
+                                                                      <th width="175">Beschreibung<br />Descrizione cessione/prestazione</th>
+                                                                      <th width="60">Menge<br />Quantità</th>
+                                                                      <th width="25">ME<br />UM</th>
+                                                                      <th width="85">Preis<br />Prezzo</th>
+                                                                      <th width="80">Skonto<br />Sconto</th>
+                                                                      <th width="85">Preis gesamt<br />Prezzo totale</th>
+                                                                      <th width="40">MwSt<br />IVA<br />(%)</th>
+                                                                 </tr>
+                                                                 <xsl:for-each select="DatiBeniServizi/DettaglioLinee">
+                                                                 <tr>
+                                                                      <td align="center"><span><xsl:value-of select="NumeroLinea" /></span></td>
                                                                       <td>
-                                                                                                                      <xsl:if test="Descrizione">
-                                                                        <xsl:if test="CodiceArticolo">
-                                                                          <xsl:for-each select="CodiceArticolo">
-                                                                            <xsl:if test="CodiceTipo"><span><xsl:value-of select="CodiceTipo" /></span></xsl:if>
-                                                                            <xsl:if test="CodiceValore"><span><xsl:value-of select="CodiceValore" /></span></xsl:if><br />
-                                                                          </xsl:for-each>
-                                                                        </xsl:if>
-                                                                        <span><xsl:value-of select="Descrizione" /></span>
+                                                                      <xsl:if test="Descrizione">
+                                                                           <xsl:if test="CodiceArticolo">
+                                                                           <xsl:for-each select="CodiceArticolo">
+                                                                                <xsl:if test="CodiceTipo"><span><xsl:value-of select="CodiceTipo" /></span></xsl:if>
+                                                                                <xsl:if test="CodiceValore"><span><xsl:value-of select="CodiceValore" /></span></xsl:if><br />
+                                                                           </xsl:for-each>
                                                                       </xsl:if>
+                                                                           <span><xsl:value-of select="Descrizione" /></span>
+                                                                      </xsl:if> <!-- 2.2.1.2 -->
                                                                       <xsl:if test="TipoCessionePrestazione"><br /><span><xsl:value-of select="TipoCessionePrestazione" /></span>
-                                                                        <xsl:variable name="TCP"><xsl:value-of select="TipoCessionePrestazione" /></xsl:variable>
-                                                                         <xsl:choose>
-                                                                              <xsl:when test="$TCP='SC'"> (Skonto)<i>(sconto)</i></xsl:when>
-                                                                              <xsl:when test="$TCP='PR'"> (Prämie)<i>(premio)</i></xsl:when>
-                                                                              <xsl:when test="$TCP='AB'"> (Gutschrift)<i>(abbuono)</i></xsl:when>
-                                                                              <xsl:when test="$TCP='AC'"> (Zusatzspesen)<i>(spesa accessoria)</i></xsl:when>
-                                                                              <xsl:otherwise><fehler> (!!! falscher Kodex !!!)<i>(!!! codice non previsto !!!)</i></fehler></xsl:otherwise>
-                                                                         </xsl:choose><span><xsl:value-of select="ScontoMaggiorazione/Percentuale" />%</span></xsl:if>
+                                                                           <xsl:variable name="TCP"><xsl:value-of select="TipoCessionePrestazione" /></xsl:variable>
+                                                                           <xsl:choose>
+                                                                                <xsl:when test="$TCP='SC'"> (Skonto)<i>(sconto)</i></xsl:when>
+                                                                                <xsl:when test="$TCP='PR'"> (Prämie)<i>(premio)</i></xsl:when>
+                                                                                <xsl:when test="$TCP='AB'"> (Gutschrift)<i>(abbuono)</i></xsl:when>
+                                                                                <xsl:when test="$TCP='AC'"> (Zusatzspesen)<i>(spesa accessoria)</i></xsl:when>
+                                                                                <xsl:otherwise><fehler> (!!! falscher Kodex !!!)<i>(!!! codice non previsto !!!)</i></fehler></xsl:otherwise>
+                                                                           </xsl:choose>
+                                                                      </xsl:if>
                                                                       <xsl:if test="AltriDatiGestionali">
-                                                                          <xsl:for-each select="AltriDatiGestionali">
-                                                                              <xsl:if test="TipoDato">
-                                                                                  <br />
-                                                                                  <!-- 2.2.1.16.1: Datentyp <i>Tipo dato:</i> -->
-                                                                                  <xsl:value-of select="TipoDato" />:
-                                                                              </xsl:if>
-                                                                              <xsl:if test="RiferimentoTesto">
-                                                                                  <br />
-                                                                                  <!-- 2.2.1.16.2: Text-Wert <i>Valore testo</i> -->
-                                                                                  <span><xsl:value-of select="RiferimentoTesto" /></span>
-                                                                              </xsl:if>
-                                                                              <xsl:if test="RiferimentoNumero">
-                                                                                  <br />
-                                                                                  <!-- 2.2.1.16.3: Nummerischer Wert<i>Valore numerico</i> -->
-                                                                                  <span><xsl:value-of select="RiferimentoNumero" /></span>
-                                                                              </xsl:if>
-                                                                              <xsl:if test="RiferimentoData">
-                                                                                  <br />
-                                                                                      <!-- 2.2.1.16.4: Datumswert <i>Valore data </i>  -->
-                                                                                      <span><xsl:value-of select="RiferimentoData" /></span><xsl:call-template name="FormatDate">
+                                                                           <xsl:for-each select="AltriDatiGestionali">
+                                                                           <xsl:if test="TipoDato">
+                                                                                <br />
+                                                                                <!-- 2.2.1.16.1: Datentyp <i>Tipo dato:</i> -->
+                                                                                <xsl:value-of select="TipoDato" />:
+                                                                           </xsl:if>
+                                                                           <xsl:if test="RiferimentoTesto">
+                                                                                <br />
+                                                                                <!-- 2.2.1.16.2: Text-Wert <i>Valore testo</i> -->
+                                                                                <span><xsl:value-of select="RiferimentoTesto" /></span>
+                                                                           </xsl:if>
+                                                                           <xsl:if test="RiferimentoNumero">
+                                                                                <br />
+                                                                                <!-- 2.2.1.16.3: Nummerischer Wert<i>Valore numerico</i> -->
+                                                                                <span><xsl:value-of select="RiferimentoNumero" /></span>
+                                                                           </xsl:if>
+                                                                           <xsl:if test="RiferimentoData">
+                                                                                <br />
+                                                                                <!-- 2.2.1.16.4: Datumswert <i>Valore data </i>  -->
+                                                                                <span><xsl:value-of select="RiferimentoData" /></span><xsl:call-template name="FormatDate">
                                                                                           <xsl:with-param name="DateTime" select="RiferimentoData" />
-                                                                                      </xsl:call-template>
-                                                                              </xsl:if>
-                                                                          </xsl:for-each>
+                                                                                     </xsl:call-template>
+                                                                           </xsl:if>
+                                                                           </xsl:for-each>
                                                                       </xsl:if>
                                                                       <xsl:if test="DataInizioPeriodo"><br />
-                                                                        <xsl:if test="DataInizioPeriodo">Datum Beginn des Leistungszeitraumes <i>inizio periodo di riferimento</i>: <span>
-                                                                          <xsl:value-of select="DataInizioPeriodo" /></span><xsl:call-template name="FormatDate">
-                                                                          <xsl:with-param name="DateTime" select="DataInizioPeriodo" /></xsl:call-template>
-                                                                          <xsl:if test="DataFinePeriodo"><br /> </xsl:if></xsl:if>
-                                                                          <xsl:if test="DataFinePeriodo">Datum Ende des Leistungszeitraumes <i>Data fine periodo di riferimento</i>: <span>
-                                                                        <xsl:value-of select="DataFinePeriodo" /></span><xsl:call-template name="FormatDate">
-                                                                        <xsl:with-param name="DateTime" select="DataFinePeriodo" /></xsl:call-template></xsl:if></xsl:if>
+                                                                           <xsl:if test="DataInizioPeriodo">Datum Beginn des Leistungszeitraumes <i>inizio periodo di riferimento</i>: <span>
+                                                                           <xsl:value-of select="DataInizioPeriodo" /></span><xsl:call-template name="FormatDate">
+                                                                           <xsl:with-param name="DateTime" select="DataInizioPeriodo" /></xsl:call-template>
+                                                                           <xsl:if test="DataFinePeriodo"><br /> </xsl:if></xsl:if>
+                                                                           <xsl:if test="DataFinePeriodo">Datum Ende des Leistungszeitraumes <i>Data fine periodo di riferimento</i>: <span>
+                                                                           <xsl:value-of select="DataFinePeriodo" /></span><xsl:call-template name="FormatDate">
+                                                                           <xsl:with-param name="DateTime" select="DataFinePeriodo" /></xsl:call-template></xsl:if>
+                                                                      </xsl:if>
                                                                       <xsl:if test="ScontoMaggiorazione/Tipo">
                                                                            <xsl:for-each select="ScontoMaggiorazione">
-                                                                                <br /><span><xsl:value-of select="ScontoMaggiorazione/Tipo" /></span>
-                                                                                <xsl:variable name="TSCM"><xsl:value-of select="ScontoMaggiorazione/Tipo" /></xsl:variable>
+                                                                                <br /><span><span><xsl:value-of select="Percentuale" /> % <xsl:value-of select="Tipo" /></span>
+                                                                                <xsl:variable name="TSCM"><xsl:value-of select="Tipo" /></xsl:variable>
                                                                                 <xsl:choose>
                                                                                      <xsl:when test="$TSCM='SC'"> (Skonto)<i>(sconto)</i></xsl:when>
                                                                                      <xsl:when test="$TSCM='MG'"> (Aufpreis)<i>(maggiorazione)</i></xsl:when>
                                                                                      <xsl:otherwise><fehler> (!!! falscher Kodex !!!)<i>(!!! codice non previsto !!!)</i></fehler></xsl:otherwise>
-                                                                                </xsl:choose><span><xsl:value-of select="ScontoMaggiorazione/Percentuale" />%</span>
+                                                                                </xsl:choose>
                                                                            </xsl:for-each>
-                                                                         </xsl:if>
-                                                                       </td>
-                                                                           <td align="right"><xsl:if test="Quantita">
+                                                                      </xsl:if>
+                                                                      </td>
+                                                                      <td align="right"><xsl:if test="Quantita">
                                                                            <span><xsl:value-of select="format-number(Quantita, '#.###,###','euro')" /></span></xsl:if></td>
-                                                                           <td><xsl:if test="UnitaMisura"><span><xsl:value-of select="UnitaMisura" /></span></xsl:if></td>
-                                                                           <td align="right"><xsl:if test="PrezzoUnitario"><span><xsl:value-of select="format-number(PrezzoUnitario, '###.##0,#####', 'euro')" /></span></xsl:if></td>
-                                                                                <td align="right">
-                                                                                <xsl:for-each select="ScontoMaggiorazione">
-                                                                                <xsl:if test="ScontoMaggiorazione/Importo">
-                                                                                     <span><xsl:value-of select="format-number(ScontoMaggiorazione/Importo, '###.##0,00', 'euro')" /></span>
-                                                                                </xsl:if>
-                                                                                </xsl:for-each></td>
-                                                                         <td align="right"><xsl:if test="PrezzoTotale"><span><xsl:value-of select="format-number(PrezzoTotale, '###.##0,00', 'euro')"  /></span></xsl:if></td>
-                                                                         <td align="center"><xsl:if test="AliquotaIVA">
-                                                                         <xsl:variable name="IVA" select="AliquotaIVA"/>
-                                                                         <xsl:choose>
-                                                                              <xsl:when test="$IVA='0.00' or $IVA='0'">
-                                                                                   <xsl:if test="Natura"><span><xsl:value-of select="Natura" /></span></xsl:if>
-                                                                              </xsl:when>
-                                                                              <xsl:otherwise><span><xsl:value-of select="format-number(AliquotaIVA, '##0')" /></span></xsl:otherwise>
-                                                                         </xsl:choose>
-                                                                         </xsl:if></td>
-
+                                                                      <td><xsl:if test="UnitaMisura"><span><xsl:value-of select="UnitaMisura" /></span></xsl:if></td>
+                                                                      <td align="right"><xsl:if test="PrezzoUnitario"><span><xsl:value-of select="format-number(PrezzoUnitario, '###.##0,#####', 'euro')" /></span></xsl:if></td>
+                                                                      <td align="right">
+                                                                      <xsl:if test="ScontoMaggiorazione/Tipo">     
+                                                                           <xsl:for-each select="ScontoMaggiorazione">
+                                                                                <xsl:variable name="TSCM"><xsl:value-of select="Tipo" /></xsl:variable>
+                                                                                <xsl:choose>
+                                                                                     <xsl:when test="$TSCM='SC'">-</xsl:when>
+                                                                                     <xsl:when test="$TSCM='MG'">+</xsl:when>
+                                                                                </xsl:choose>
+                                                                                <span><xsl:value-of select="format-number(Importo, '###.##0,00', 'euro')" /></span><br />
+                                                                           </xsl:for-each>
+                                                                      </xsl:if>
+                                                                      </td>
+                                                                      <td align="right"><xsl:if test="PrezzoTotale"><span><xsl:value-of select="format-number(PrezzoTotale, '###.##0,00', 'euro')"  /></span></xsl:if></td>
+                                                                      <td align="center"><xsl:if test="AliquotaIVA">
+                                                                      <xsl:variable name="IVA" select="AliquotaIVA"/>
+                                                                      <xsl:choose>
+                                                                           <xsl:when test="$IVA='0.00' or $IVA='0'">
+                                                                                <xsl:if test="Natura"><span><xsl:value-of select="Natura" /></span></xsl:if>
+                                                                           </xsl:when>
+                                                                           <xsl:otherwise><span><xsl:value-of select="format-number(AliquotaIVA, '##0')" /></span></xsl:otherwise>
+                                                                      </xsl:choose>
+                                                                      </xsl:if></td>
                                                                       </tr>
                                                                  </xsl:for-each>
                                                               </table>
@@ -1386,11 +1398,10 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                             </div>
                                                        </xsl:if>
                                                        <!--FINE DATI RIEPILOGO ALIQUOTE E NATURE-->
-
                                                   </div>
                                              </xsl:if>
                                              <!--FINE DATI BENI E SERVIZI-->
-
+                                             
                                              <!--INIZIO DATI VEICOLI-->
                                              <xsl:if test="DatiVeicoli">
                                                   <div id="dati-veicoli"><h3>Daten zum Transportfahrzeug - <i>Dati Veicoli ex art. 38 dl 331/1993</i></h3>
