@@ -1234,8 +1234,8 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                  <h3>Daten zur Lieferung - <i>Dati relativi alle linee di dettaglio della fornitura</i></h3>
                                                                 <table id="t2">
                                                                   <tr bgcolor="#998c99">
-                                                                    <th align="center" width="25">Nr</th>
-                                                                    <th width="520">Beschreibung<br />Descrizione cessione/prestazione</th>
+                                                                    <th align="center" width="30">Nr</th>
+                                                                    <th width="515">Beschreibung<br />Descrizione cessione/prestazione</th>
                                                                     <th width="65">Menge<br />Quantità</th>
                                                                     <th width="40">ME<br />UM</th>
                                                                     <th width="85">Preis<br />Prezzo</th>
