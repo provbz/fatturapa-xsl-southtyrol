@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Versionsdatum: 2015-10-06 -->
+<!-- Versionsdatum: 2015-10-18 -->
 <!-- Feedback erwünscht an info@ing-tavernini.com -->
 <!--
 fatturapa_v1.1_de-it.xsl
@@ -26,7 +26,7 @@ http://www.gnu.org/licenses/.
      xmlns:a="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1">
      <xsl:output method="html" />
      <xsl:variable name="VersionFT">
-         <p>Stylesheet fatturapa_v1.1_de-it_wd.xsl v20151011 ft - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
+         <p>Stylesheet fatturapa_v1.1_de-it_wd.xsl v20151018 Ferdinand Tavernini - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
      </xsl:variable>
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="." />
 
@@ -1320,7 +1320,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                             <td align="right">
                                                                             <xsl:if test="ScontoMaggiorazione/Tipo">
                                                                                 <xsl:for-each select="ScontoMaggiorazione">
-                                                                                    <xsl:if test="ScontoMaggiorazione/Importo">
+                                                                                    <xsl:if test="Importo">
                                                                                         <xsl:variable name="TSCM"><xsl:value-of select="Tipo" /></xsl:variable>
                                                                                         <xsl:choose>
                                                                                              <xsl:when test="$TSCM='SC'">-</xsl:when>
