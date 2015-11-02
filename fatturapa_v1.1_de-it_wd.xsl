@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Versionsdatum: 2015-10-18 -->
+<!-- Versionsdatum: 2015-10-29 -->
 <!-- Feedback erwünscht an info@ing-tavernini.com -->
 <!--
 fatturapa_v1.1_de-it.xsl
@@ -26,7 +26,7 @@ http://www.gnu.org/licenses/.
      xmlns:a="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1">
      <xsl:output method="html" />
      <xsl:variable name="VersionFT">
-         <p>Stylesheet fatturapa_v1.1_de-it_wd.xsl v20151018 Ferdinand Tavernini - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
+         <p>Stylesheet fatturapa_v1.1_de-it_wd.xsl v20151029 Ferdinand TAVERNINI - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
      </xsl:variable>
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="." />
 
@@ -154,7 +154,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                     <div id="fattura-container">
                          <!--INIZIO DATI HEADER-->
                          <xsl:if test="a:FatturaElettronica">
-                              <div id="fattura-elettronica"><h1>Italienische elektronische Rechnung <i> FATTURA ELETTRONICA</i></h1><xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader">
+                              <div id="fattura-elettronica"><h1>Italienische elektronische Rechnung<br /><i>FATTURA ELETTRONICA</i></h1><xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader">
                                         <div class="page">
                                              <div class="version">FatturaPA Version/<i>versione </i><xsl:value-of select="a:FatturaElettronica/@versione"/></div>
                                              <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/DatiTrasmissione">
@@ -353,7 +353,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                        </xsl:for-each>
 
                                                        <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore/RiferimentoAmministrazione">
-                                                            <h4>Verwaltungsreferenz - <i>Riferimento amministrativo</i></h4>
+                                                            <h4>Hinweis Verwaltung / Buchhaltung - <i>Riferimento amministrativo</i></h4>
                                                                  <table id="t1">
                                                                       <tr><td width="70px">1.2.6</td><td width="170px">Referenz<br /><i>Riferimento</i></td> 
                                                                            <td width="731px"><span><xsl:value-of select="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore/RiferimentoAmministrazione" /></span></td>
@@ -1266,6 +1266,14 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                               <xsl:otherwise><fehler> (!!! falscher Kodex !!!)<i>(!!! codice non previsto !!!)</i></fehler></xsl:otherwise>
                                                                          </xsl:choose><!-- <span><xsl:value-of select="ScontoMaggiorazione/Percentuale" />%</span>   -->
                                                                       </xsl:if>
+
+                                                                      <xsl:if test="RiferimentoAmministrazione">
+                                                                         <br />
+                                                                         <!-- 2.2.1.15: RiferimentoAmministrazione -->
+                                                                         <span><xsl:value-of select="RiferimentoAmministrazione" /></span>
+                                                                         Hinweis Verwaltung / Buchhaltung <i>RiferimentoAmministrazione</i>
+                                                                      </xsl:if>
+
                                                                       <xsl:if test="AltriDatiGestionali">
                                                                           <xsl:for-each select="AltriDatiGestionali">
                                                                               <xsl:if test="TipoDato">
@@ -1314,7 +1322,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                       </td>
                                                                       <td align="right">
                                                                            <xsl:if test="Quantita">
-                                                                           <span><xsl:value-of select="format-number(Quantita, '#.###,###','euro')" /></span></xsl:if></td>
+                                                                           <span><xsl:value-of select="format-number(Quantita, '#.##0,###','euro')" /></span></xsl:if></td>
                                                                             <td><xsl:if test="UnitaMisura"><span><xsl:value-of select="UnitaMisura" /></span></xsl:if></td>
                                                                             <td align="right"><xsl:if test="PrezzoUnitario"><span><xsl:value-of select="format-number(PrezzoUnitario, '###.##0,00###', 'euro')" /></span></xsl:if></td>
                                                                             <td align="right">
