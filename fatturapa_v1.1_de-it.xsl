@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Versionsdatum: 2015-10-18 -->
+<!-- Versionsdatum: 2015-10-29 -->
 <!-- Feedback erwünscht an info@ing-tavernini.com -->
 <!--
 fatturapa_v1.1_de-it.xsl
@@ -26,7 +26,7 @@ http://www.gnu.org/licenses/.
      xmlns:a="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1">
      <xsl:output method="html" />
      <xsl:variable name="VersionFT">
-         <p>Stylesheet fatturapa_v1.1_de-it.xsl v20151018 ft - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
+         <p>Stylesheet fatturapa_v1.1_de-it.xsl v20151029 ft - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
      </xsl:variable>
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="." />
 
@@ -353,7 +353,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                        </xsl:for-each>
 
                                                        <xsl:if test="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore/RiferimentoAmministrazione">
-                                                            <h4>Verwaltungsreferenz - <i>Riferimento amministrativo</i></h4>
+                                                            <h4>Hinweis Verwaltung / Buchhaltung - <i>Riferimento amministrativo</i></h4>
                                                                  <table id="t1">
                                                                       <tr><td width="70px">1.2.6</td><td width="170px">Referenz<br /><i>Riferimento</i></td> 
                                                                            <td width="364px"><span><xsl:value-of select="a:FatturaElettronica/FatturaElettronicaHeader/CedentePrestatore/RiferimentoAmministrazione" /></span></td>
@@ -1266,6 +1266,12 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                               <xsl:otherwise><fehler> (!!! falscher Kodex !!!)<i>(!!! codice non previsto !!!)</i></fehler></xsl:otherwise>
                                                                          </xsl:choose><!-- <span><xsl:value-of select="ScontoMaggiorazione/Percentuale" />%</span>   -->
                                                                       </xsl:if>
+                                                                      <xsl:if test="RiferimentoAmministrazione">
+                                                                         <br />
+                                                                         <!-- 2.2.1.15: RiferimentoAmministrazione -->
+                                                                         <span><xsl:value-of select="RiferimentoAmministrazione" /></span>
+                                                                         Hinweis Verwaltung / Buchhaltung <i>RiferimentoAmministrazione</i>
+                                                                      </xsl:if>
                                                                       <xsl:if test="AltriDatiGestionali">
                                                                           <xsl:for-each select="AltriDatiGestionali">
                                                                               <xsl:if test="TipoDato">
@@ -1320,16 +1326,14 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                             <td align="right">
                                                                             <xsl:if test="ScontoMaggiorazione/Tipo">
                                                                                 <xsl:for-each select="ScontoMaggiorazione">
-                                                                                     <xsl:if test="Importo">
-                                                                                     <xsl:variable name="TSCM"><xsl:value-of select="Tipo" /></xsl:variable>
-                                                                                     <xsl:choose>
-                                                                                          <xsl:when test="$TSCM='SC'">-</xsl:when>
-                                                                                          <xsl:when test="$TSCM='MG'">+</xsl:when>
-                                                                                     </xsl:choose>
-                                                                                     <span><xsl:value-of select="format-number(Importo, '###.##0,00', 'euro')" /></span><br />
-                                                                                </xsl:if>
+                                                                                <xsl:variable name="TSCM"><xsl:value-of select="Tipo" /></xsl:variable>
+                                                                                <xsl:choose>
+                                                                                     <xsl:when test="$TSCM='SC'">-</xsl:when>
+                                                                                     <xsl:when test="$TSCM='MG'">+</xsl:when>
+                                                                                </xsl:choose>
+                                                                                <span><xsl:value-of select="format-number(Importo, '###.##0,00', 'euro')" /></span><br />
                                                                                 </xsl:for-each>
-                                                                           </xsl:if>
+                                                                            </xsl:if>
                                                                        </td>
                                                                        <td align="right"><xsl:if test="PrezzoTotale"><span><xsl:value-of select="format-number(PrezzoTotale, '###.##0,00', 'euro')"  /></span></xsl:if></td>
                                                                        <td align="center"><xsl:if test="AliquotaIVA">
