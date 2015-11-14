@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Versionsdatum: 2015-10-29 -->
+<!-- Versionsdatum: 2015-11-11 -->
 <!-- Feedback erwünscht an info@ing-tavernini.com -->
 <!--
 fatturapa_v1.1_de-it.xsl
@@ -26,7 +26,7 @@ http://www.gnu.org/licenses/.
      xmlns:a="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1">
      <xsl:output method="html" />
      <xsl:variable name="VersionFT">
-         <p>Stylesheet fatturapa_v1.1_de-it_wd.xsl v20151029 Ferdinand TAVERNINI - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
+         <p>Stylesheet fatturapa_v1.1_de-it_br.xsl v20151111 Ferdinand TAVERNINI - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
      </xsl:variable>
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="." />
 
@@ -1326,7 +1326,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                             <td><xsl:if test="UnitaMisura"><span><xsl:value-of select="UnitaMisura" /></span></xsl:if></td>
                                                                             <td align="right"><xsl:if test="PrezzoUnitario"><span><xsl:value-of select="format-number(PrezzoUnitario, '###.##0,00###', 'euro')" /></span></xsl:if></td>
                                                                             <td align="right">
-                                                                            <xsl:if test="ScontoMaggiorazione/Tipo">
+                                                                            <xsl:if test="ScontoMaggiorazione/Importo">
                                                                                 <xsl:for-each select="ScontoMaggiorazione">
                                                                                     <xsl:if test="Importo">
                                                                                         <xsl:variable name="TSCM"><xsl:value-of select="Tipo" /></xsl:variable>
