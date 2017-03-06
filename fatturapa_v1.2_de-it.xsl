@@ -22,10 +22,10 @@ http://www.gnu.org/licenses/.
 <xsl:stylesheet version="1.1" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1">
 -->
 
-<xsl:stylesheet version="1.1" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2">
+<xsl:stylesheet version="1.2" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:a="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2">
      <xsl:output method="html" />
      <xsl:variable name="VersionFT">
-         <p>Stylesheet fatturapa_v1.2_de-it.xsl v20161227 ft - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
+         <p>Stylesheet fatturapa_v1.2_de-it.xsl v20170307 ft - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
      </xsl:variable>
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="." />
 
@@ -1360,14 +1360,23 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                             <td><xsl:if test="UnitaMisura"><span><xsl:value-of select="UnitaMisura" /></span></xsl:if></td>
                                                                             <td align="right"><xsl:if test="PrezzoUnitario"><span><xsl:value-of select="format-number(PrezzoUnitario, '###.##0,00###', 'euro')" /></span></xsl:if></td>
                                                                             <td align="right">
-                                                                            <xsl:if test="ScontoMaggiorazione/Importo">
+                                                                            <xsl:if test="ScontoMaggiorazione/Tipo">
                                                                                 <xsl:for-each select="ScontoMaggiorazione">
                                                                                 <xsl:variable name="TSCM"><xsl:value-of select="Tipo" /></xsl:variable>
-                                                                                <xsl:choose>
-                                                                                     <xsl:when test="$TSCM='SC'">-</xsl:when>
-                                                                                     <xsl:when test="$TSCM='MG'">+</xsl:when>
-                                                                                </xsl:choose>
+                                                                                <xsl:if test="Percentuale">
+                                                                                	<xsl:choose>
+                                                                                     		<xsl:when test="$TSCM='SC'">-</xsl:when>
+                                                                                     		<xsl:when test="$TSCM='MG'">+</xsl:when>
+                                                                                	</xsl:choose>
+                                                                                <span><xsl:value-of select="Percentuale" /> % </span><br />
+                                                                                </xsl:if>
+                                                                                <xsl:if test="Importo">
+                                                                                    <xsl:choose>
+                                                                                     		<xsl:when test="$TSCM='SC'"> -</xsl:when>
+                                                                                     		<xsl:when test="$TSCM='MG'"> +</xsl:when>
+                                                                                	</xsl:choose>
                                                                                 <span><xsl:value-of select="format-number(Importo, '###.##0,00', 'euro')" /></span><br />
+                                                                                </xsl:if><br />
                                                                                 </xsl:for-each>
                                                                             </xsl:if>
                                                                        </td>
