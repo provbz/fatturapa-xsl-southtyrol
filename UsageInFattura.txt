@@ -5,18 +5,18 @@ Bevore adding the StyleSheet:
 
 <?xml version="1.0" encoding="utf-8"?>
 
-<p:FatturaElettronica xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:p="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1" ...
+<p:FatturaElettronica xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:p="http://www.fatturapa.gov.it/sdi/fatturapa/v1.2" ...
 
 After adding the StyleSheet:
 
 <?xml version="1.0" encoding="utf-8"?>
 
-<?xml-stylesheet type="text/xsl" href="https://cdn.rawgit.com/provbz/fatturapa-xsl-southtyrol/master/fatturapa_v1.1_de-it.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://cdn.rawgit.com/provbz/fatturapa-xsl-southtyrol/master/fatturapa_v1.2_de-it.xsl"?>
 
-<p:FatturaElettronica xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:p="http://www.fatturapa.gov.it/sdi/fatturapa/v1.1" ...
+<p:FatturaElettronica xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:p="http://www.fatturapa.gov.it/sdi/fatturapa/v1.2" ...
 
 
-You can find the Raw File at: https://cdn.rawgit.com/provbz/fatturapa-xsl-southtyrol/master/fatturapa_v1.1_de-it.xsl
+You can find the Raw File at: https://cdn.rawgit.com/provbz/fatturapa-xsl-southtyrol/master/fatturapa_v1.2_de-it.xsl
 The Stylesheet was tested by myself With: Firefox, Internet Exlorer.
 Firefox is suggested to avoid problems with cross-domain-policy.
 
