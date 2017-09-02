@@ -611,7 +611,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                            </tr>
                                                                       </xsl:for-each>
                                                                       <xsl:if test="DatiGenerali/DatiGeneraliDocumento/Art73">
-                                                                           <tr><td>2.1.1.12</td><td colspan="2">Art. 73 DPR 633/72</td>
+                                                                           <tr><td>2.1.1.12</td><td>Art. 73 DPR 633/72</td>
                                                                                 <td><span><xsl:value-of select="DatiGenerali/DatiGeneraliDocumento/Art73" /></span></td>
                                                                            </tr>
                                                                       </xsl:if>
@@ -1106,7 +1106,7 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                                      </tr>
                                                                                 </xsl:if>
                                                                                 <xsl:if test="Anagrafica/Nome">
-                                                                                     <tr><td width="90px">2.1.9.1.3.2</td><td width="170px">Name<br /><i>Nome</i></td>
+                                                                                     <tr><td width="70px">2.1.9.1.3.2</td><td width="170px">Name<br /><i>Nome</i></td>
                                                                                           <td width="731px"><span><xsl:value-of select="Anagrafica/Nome" /></span></td>
                                                                                      </tr>
                                                                                 </xsl:if>
@@ -1116,8 +1116,8 @@ th {background-color:#0f0f0f; color: #fafafa;}</style>
                                                                                      </tr>
                                                                                 </xsl:if>
                                                                                 <xsl:if test="IdFiscaleIVA/IdPaese">
-                                                                                     <tr><td>2.1.9.1.1</td><td>Mehrwertsteuernummer<br /><i>Ident. fiscale ai fini IVA</i></td>
-                                                                                          <td><span><xsl:value-of select="IdFiscaleIVA/IdPaese" /><xsl:value-of select="IdFiscaleIVA/IdCodice" /></span></td>
+                                                                                     <tr><td width="70px">2.1.9.1.1</td><td width="170px">Mehrwertsteuernummer<br /><i>Ident. fiscale ai fini IVA</i></td>
+                                                                                          <td width="731px"><span><xsl:value-of select="IdFiscaleIVA/IdPaese" /><xsl:value-of select="IdFiscaleIVA/IdCodice" /></span></td>
                                                                                      </tr>
                                                                                 </xsl:if>
                                                                                 <xsl:if test="CodiceFiscale">
