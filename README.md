@@ -1,14 +1,14 @@
 # XSL for FatturaPA in South-Tyrol
-This repository contains a new XSL Stylesheet for the Italian e-invoice (http://fatturapa.gov.it). It is specifically meant to be used in South Tyrol since it generates a bilingual (German + Italian) rendering of a given XML invoice with an enhanced layout with respect to the original stylesheet (http://www.fatturapa.gov.it/export/fatturazione/sdi/fatturapa/v1.1/fatturapa_v1.2.xsl).
+This repository contains a new XSL Stylesheet for the Italian e-invoice (http://fatturapa.gov.it). It is specifically meant to be used in South Tyrol since it generates a bilingual (German + Italian) rendering of a given XML invoice with an enhanced layout with respect to the original stylesheet (https://www.fatturapa.gov.it/export/documenti/fatturapa/v1.2.1/Foglio_di_stile_fatturaPA_v1.2.1.xsl).
 
 ## Copying
-```fatturapa_v1.2_de-it.xsl``` and ```fatturapa_v1.2_de-it_wd.xsl``` - Copyright (C) 2017 Ferdinand Tavernini
+```fatturapa_v1.2.1_de-it.xsl``` - Copyright (C) 2017 Ferdinand Tavernini
 
-The XSL-stylesheet ```fatturapa_v1.2_de-it.xsl``` and  ```fatturapa_v1.2_de-it_wd.xsl``` is free software: you can redistribute it and/or modify
+The XSL-stylesheet ```fatturapa_v1.2.1_de-it.xsl``` is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or any later version.
 
-```fatturapa_v1.1_de-it.xsl``` and ```fatturapa_v1.2_de-it_wd.xsl```  is distributed in the hope that it will be useful,
+```fatturapa_v1.2.1_de-it.xsl``` is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
