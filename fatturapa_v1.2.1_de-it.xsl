@@ -762,10 +762,10 @@ http://www.gnu.org/licenses/.
                                                                                                <xsl:choose>
                                                                                                     <!-- Version 1.2.1 -->
 												       <xsl:when test="$NT='N1'"> (ausgenommener Geschäftsvorg. ex Art. 15)<br/><i>(escluse ex art. 15)</i></xsl:when>
-												       <xsl:when test="$NT='N2'"> (nicht unterworfener Geschäftsvorg. (darf nach dem 31.21.2020 nicht mehr verwendet werden))<br/><i>(non soggette (non più utilizabile dopo il 31.12.2020))</i></xsl:when>
+												       <xsl:when test="$NT='N2'"> (nicht unterworfener Geschäftsvorg. (darf nach dem 31.12.2020 nicht mehr verwendet werden))<br/><i>(non soggette (non più utilizabile dopo il 31.12.2020))</i></xsl:when>
 												       <xsl:when test="$NT='N2.1'"> (nicht unterworfener Geschäftsvorg. im Sinne der Artikel von 7 bis 7-septies des DPR 633/72)<br/><i>(Non soggette ad IVA ai sensi degli artt. da 7 a 7- septies del DPR 633/72)</i></xsl:when>
 												       <xsl:when test="$NT='N2.2'"> (nicht unterworfener Geschäftsvorg. – andere Fälle)<br/><i>(non soggette – altri casi)</i></xsl:when>
-												       <xsl:when test="$NT='N3'"> (nicht Mehrwertsteuerpflichtig (darf nach dem 31.21.2020 nicht mehr verwendet werden) )<br/><i>(non imponibili (non più utilizabile dopo il 31.12.2020))</i></xsl:when>
+												       <xsl:when test="$NT='N3'"> (nicht Mehrwertsteuerpflichtig (darf nach dem 31.12.2020 nicht mehr verwendet werden) )<br/><i>(non imponibili (non più utilizabile dopo il 31.12.2020))</i></xsl:when>
 												       <xsl:when test="$NT='N3.1'"> (nicht Mehrwertsteuerpflichtig--Export)<br/><i>(non imponibili – esportazioni)</i></xsl:when>
 												       <xsl:when test="$NT='N3.2'"> (nicht Mehrwertsteuerpflichtig--innergemeinschaftliche Verkäufe)<br/><i>(non imponibili – cessioni intracomunitarie)</i></xsl:when>
 												       <xsl:when test="$NT='N3.3'"> (nicht Mehrwertsteuerpflichtig--Verkäufe nach San Marino)<br/><i>(non imponibili – cessioni verso San Marino)</i></xsl:when>
@@ -774,7 +774,7 @@ http://www.gnu.org/licenses/.
 												       <xsl:when test="$NT='N3.6'"> (nicht Mehrwertsteuerpflichtig--andere Operationen, die nicht zur Bildung des Plafonds beitragen)<br/><i>(non imponibili – altre operazioni che non concorrono alla formazione del plafond)</i></xsl:when>
 												       <xsl:when test="$NT='N4'"> (befreit)<br/><i>(esenti)</i></xsl:when>
 												       <xsl:when test="$NT='N5'"> (im Rahmen der Differenzbesteuerung)<br/><i>(regime del margine)</i></xsl:when>
-												       <xsl:when test="$NT='N6'"> (Umkehrung der Steuerschuldnerschaft(darf nach dem 31.21.2020 nicht mehr verwendet werden))<br/><i>(inversione contabile (non più utilizabile dopo il 31.12.2020))</i></xsl:when>
+												       <xsl:when test="$NT='N6'"> (Umkehrung der Steuerschuldnerschaft(darf nach dem 31.12.2020 nicht mehr verwendet werden))<br/><i>(inversione contabile (non più utilizabile dopo il 31.12.2020))</i></xsl:when>
 												       <xsl:when test="$NT='N6.1'"> (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Schrott und anderen recycelten Materialien)<br/><i>(inversione contabile – cessione di rottami e altri materiali di recupero)</i></xsl:when>
 												       <xsl:when test="$NT='N6.2'"> (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von reinem Gold und Silber)<br/><i>(inversione contabile – cessione di oro e argento puro)</i></xsl:when>
 												       <xsl:when test="$NT='N6.3'"> (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Unteraufträge im Bausektor)<br/><i>(inversione contabile – subappalto nel settore edile)</i></xsl:when>
@@ -1463,10 +1463,10 @@ http://www.gnu.org/licenses/.
                                                                                      <xsl:choose>
                                                                                           <!-- Version 1.2.1 -->
 											     <xsl:when test="$NAT1='N1'"> (ausgenommener Geschäftsvorg. ex Art. 15)<br/><i>(escluse ex art. 15)</i></xsl:when>
-											     <xsl:when test="$NAT1='N2'"> (nicht unterworfener Geschäftsvorg.(darf nach dem 31.21.2020 nicht mehr verwendet werden))<br/><i>(non soggette (non più utilizabile dopo il 31.12.2020))</i></xsl:when>
+											     <xsl:when test="$NAT1='N2'"> (nicht unterworfener Geschäftsvorg.(darf nach dem 31.12.2020 nicht mehr verwendet werden))<br/><i>(non soggette (non più utilizabile dopo il 31.12.2020))</i></xsl:when>
 											     <xsl:when test="$NAT1='N2.1'"> (nicht unterworfener Geschäftsvorg. im Sinne der Artikel von 7 bis 7-septies des DPR 633/72)<br/><i>(Non soggette ad IVA ai sensi degli artt. da 7 a 7- septies del DPR 633/72)</i></xsl:when>
 											     <xsl:when test="$NAT1='N2.2'"> (nicht unterworfener Geschäftsvorg. – andere Fälle)<br/><i>(non soggette – altri casi)</i></xsl:when>
-											     <xsl:when test="$NAT1='N3'"> (nicht Mehrwertsteuerpflichtig-(darf nach dem 31.21.2020 nicht mehr verwendet werden))<br/><i>(non imponibili (non più utilizabile dopo il 31.12.2020))</i></xsl:when>
+											     <xsl:when test="$NAT1='N3'"> (nicht Mehrwertsteuerpflichtig-(darf nach dem 31.12.2020 nicht mehr verwendet werden))<br/><i>(non imponibili (non più utilizabile dopo il 31.12.2020))</i></xsl:when>
 											     <xsl:when test="$NAT1='N3.1'"> (nicht Mehrwertsteuerpflichtig--Export)<br/><i>(non imponibili – esportazioni)</i></xsl:when>
 											     <xsl:when test="$NAT1='N3.2'"> (nicht Mehrwertsteuerpflichtig--innergemeinschaftliche Verkäufe)<br/><i>(non imponibili – cessioni intracomunitarie)</i></xsl:when>
 											     <xsl:when test="$NAT1='N3.3'"> (nicht Mehrwertsteuerpflichtig--Verkäufe nach San Marino)<br/><i>(non imponibili – cessioni verso San Marino)</i></xsl:when>
@@ -1475,7 +1475,7 @@ http://www.gnu.org/licenses/.
 											     <xsl:when test="$NAT1='N3.6'"> (nicht Mehrwertsteuerpflichtig--andere Operationen, die nicht zur Bildung des Plafonds beitragen)<br/><i>(non imponibili – altre operazioni che non concorrono alla formazione del plafond)</i></xsl:when>
 											     <xsl:when test="$NAT1='N4'"> (befreit)<br/><i>(esenti)</i></xsl:when>
 											     <xsl:when test="$NAT1='N5'"> (im Rahmen der Differenzbesteuerung)<br/><i>(regime del margine)</i></xsl:when>
-											     <xsl:when test="$NAT1='N6'"> (Umkehrung derSteuerschuldnerschaft(darf nach dem 31.21.2020 nicht mehr verwendet werden))<br/><i>(inversione contabile (non più utilizabile dopo il 31.12.2020))</i></xsl:when>
+											     <xsl:when test="$NAT1='N6'"> (Umkehrung derSteuerschuldnerschaft(darf nach dem 31.12.2020 nicht mehr verwendet werden))<br/><i>(inversione contabile (non più utilizabile dopo il 31.12.2020))</i></xsl:when>
 											     <xsl:when test="$NAT1='N6.1'"> (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von Schrott und anderen recycelten Materialien)<br/><i>(inversione contabile – cessione di rottami e altri materiali di recupero)</i></xsl:when>
 											     <xsl:when test="$NAT1='N6.2'"> (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Verkauf von reinem Gold und Silber)<br/><i>(inversione contabile – cessione di oro e argento puro)</i></xsl:when>
 											     <xsl:when test="$NAT1='N6.3'"> (Reverse-Charge (Umkehrung der Steuerschuldnerschaft) - Unteraufträge im Bausektor)<br/><i>(inversione contabile – subappalto nel settore edile)</i></xsl:when>
