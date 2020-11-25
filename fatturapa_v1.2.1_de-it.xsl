@@ -27,7 +27,7 @@ http://www.gnu.org/licenses/.
 <xsl:output method="html" />
 
      <xsl:variable name="VersionFT">
-         <p>Stylesheet fatturapa_v1.2.1_de-it.xsl v20201123 ft - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
+         <p>Stylesheet fatturapa_v1.2.1_de-it.xsl v20201125 ft - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
      </xsl:variable>
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="."/>
 
