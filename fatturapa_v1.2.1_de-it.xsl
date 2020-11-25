@@ -107,7 +107,7 @@ http://www.gnu.org/licenses/.
                     	<style type="text/css">
 				#fattura-container { width: 100%; position: relative; }
 
-				#fattura-elettronica { font-family: sans-serif; font-size: 10px; margin-left: auto; margin-right: auto; max-width: 1280px; min-width: 840px; padding: 0; }
+				#fattura-elettronica { font-family: sans-serif; font-size: 10px; margin-left: auto; margin-right: auto; max-width: 840px; min-width: 600px; padding: 0; }
 				#fattura-elettronica .version{ font-size: 9px; float:right; color: #777777; }
 				#fattura-elettronica h1 { padding: 5px 0 0 0; margin: 0; font-size: 22px; }
 				#fattura-elettronica h2 { padding: 5px 0 0 0; margin: 0; font-size: 18px; }
