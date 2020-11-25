@@ -136,7 +136,7 @@ http://www.gnu.org/licenses/.
 
 				background: url('logo_sdi_trasparente.jpg') 98% 50px no-repeat;
 				}
-				table {table-layout: auto; width: 820px; font-size: 12px;}
+				table {table-layout: auto; width: 99%; font-size: 12px;}
 				table td {overflow: hidden;}
 				table, td, th { border: 1px solid black; border-collapse: collapse;}
 				#t1 td, #t1 th { border: none; }
