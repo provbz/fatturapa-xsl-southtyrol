@@ -107,7 +107,7 @@ http://www.gnu.org/licenses/.
                     	<style type="text/css">
 				#fattura-container { width: 100%; position: relative; }
 
-				#fattura-elettronica { font-family: sans-serif; font-size: 10px; margin-left: auto; margin-right: auto; max-width: 1280px; min-width: 930px; padding: 0; }
+				#fattura-elettronica { font-family: sans-serif; font-size: 10px; margin-left: auto; margin-right: auto; max-width: 1280px; min-width: 840px; padding: 0; }
 				#fattura-elettronica .version{ font-size: 9px; float:right; color: #777777; }
 				#fattura-elettronica h1 { padding: 5px 0 0 0; margin: 0; font-size: 22px; }
 				#fattura-elettronica h2 { padding: 5px 0 0 0; margin: 0; font-size: 18px; }
@@ -136,7 +136,7 @@ http://www.gnu.org/licenses/.
 
 				background: url('logo_sdi_trasparente.jpg') 98% 50px no-repeat;
 				}
-				table {table-layout: auto; width: 950px; font-size: 12px;}
+				table {table-layout: auto; width: 820px; font-size: 12px;}
 				table td {overflow: hidden;}
 				table, td, th { border: 1px solid black; border-collapse: collapse;}
 				#t1 td, #t1 th { border: none; }
