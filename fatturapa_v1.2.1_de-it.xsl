@@ -527,7 +527,7 @@ http://www.gnu.org/licenses/.
                                                   <div id="soggetto-emittente">
                                                        <h3>Rechnungsersteller - <i>Soggetto emittente la fattura</i></h3>
                                                        <table id="t1">
-                                                            <tr><td width="100px">1.6</td><td width="200px">Austeller<br/><i>Soggetto emittente</i></td>
+                                                            <tr><td width="100px">1.6</td><td width="200px">Aussteller<br/><i>Soggetto emittente</i></td>
                                                             <td width="500px"><span><xsl:value-of select="a:FatturaElettronica/FatturaElettronicaHeader/SoggettoEmittente"/> </span><xsl:variable name="SC"><xsl:value-of select="a:FatturaElettronica/FatturaElettronicaHeader/SoggettoEmittente"/> </xsl:variable>
                                                                  <xsl:choose>
                                                                       <xsl:when test="$SC='CC'"> (Rechnungssteller)<i>(cessionario/committente)</i></xsl:when>
