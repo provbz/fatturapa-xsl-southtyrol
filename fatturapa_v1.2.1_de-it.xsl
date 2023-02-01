@@ -27,7 +27,7 @@ http://www.gnu.org/licenses/.
 <xsl:output method="html" />
 
      <xsl:variable name="VersionFT">
-         <p>Stylesheet fatturapa_v1.2.1_de-it.xsl v20230116 ft - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
+         <p>Stylesheet fatturapa_v1.2.1_de-it.xsl v20230131 ft - <a href="http://tinyurl.com/fatturapa-xsl-southtyrol">http://tinyurl.com/fatturapa-xsl-southtyrol</a></p>
      </xsl:variable>
      <xsl:decimal-format name="euro" decimal-separator="," grouping-separator="."/>
 
@@ -105,6 +105,17 @@ http://www.gnu.org/licenses/.
                <head>
                     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
                     	<style type="text/css">
+			    	
+			    	@page {
+				  size: A4;
+				  margin: 0.2cm;
+				}
+
+
+@media print {
+
+
+
 				#fattura-container { width: 100%; position: relative; }
 
 				#fattura-elettronica { font-family: sans-serif; font-size: 10px; margin-left: auto; margin-right: auto; max-width: 840px; min-width: 600px; padding: 0; }
@@ -118,14 +129,18 @@ http://www.gnu.org/licenses/.
 				#fattura-elettronica ul li {}
 				#fattura-elettronica span { font-weight: bold; font-size: 10pt;}
      				#fattura-elettronica fehler {color: red; text-decoration:blink; }
-				#fattura-elettronica div { padding: 0; margin: 0; }
+				#fattura-elettronica div { padding: 0.2cm; margin: 10 0 0 0; }
 				#fattura-elettronica
+
+				div.page.lastpage {page-break-after:avoid;}
 				
 				div.page {
+				page-break-after:always;
 				background-color: #fff !important;
 				position: relative;
 
-				margin: 10px 0 5px 0; padding: 5px;
+				margin: 10px 0 5px 5px;
+				padding: 5px;
 
 				background: -moz-linear-gradient(0% 0 360deg, #FFFFFF, #F2F2F2 20%, #FFFFFF) repeat scroll 0 0 transparent;
 				border: 1px solid #CCCCCC;
@@ -147,6 +162,7 @@ http://www.gnu.org/licenses/.
 				tr:nth-of-type(even){background-color: #F3F3F3;}
 				tr:nth-of-type(odd) {background-color:#d0d0d0;}
 				th {background-color:#808080; color: #ffffff;}
+}
 			</style>
                </head>
                <body>
@@ -557,7 +573,7 @@ http://www.gnu.org/licenses/.
                                              <h2>Dokument Nummer <i>Numero documento nel lotto</i>:<xsl:value-of select="position()"/></h2>
                                         </xsl:if>
 
-                                        <div class="page">
+                                        <div class="page lastpage">
                                              <div class="version">FatturaPA Version/<i>versione </i><xsl:value-of select="../@versione"/></div>
 
                                              <xsl:variable name="Valuta" select="DatiGenerali/DatiGeneraliDocumento/Divisa"/>
