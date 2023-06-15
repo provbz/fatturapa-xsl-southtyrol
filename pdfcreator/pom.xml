@@ -3,6 +3,11 @@
   <groupId>pdfcreator</groupId>
   <artifactId>pdfcreator</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <properties>
+    <maven.compiler.target>1.6</maven.compiler.target>
+    <maven.compiler.source>1.6</maven.compiler.source>
+</properties>
+
   <dependencies>
   <dependency>
 	<groupId>com.itextpdf</groupId>
